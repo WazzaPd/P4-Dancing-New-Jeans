@@ -1,0 +1,72 @@
+<!-- Dancing New Jeans: David Chen, Joseph Wu, Nakib Abedin
+SoftDev
+Period 08
+Dec 2023 -->
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title> LOGIN PAGE </title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/css/foundation.min.css" crossorigin="anonymous">
+  </head>
+
+
+  <body>
+    <div class="primary callout">
+      
+      <h1>Login Page</h1>
+      <h4>Enter your username and password below to proceed.</h4>
+      
+      <form action="/login", method="POST">
+        <div style="width: 400px;">
+          <div class="card_user">
+            <div class="card-divider">
+              <h4> Username: </h4>
+            </div>
+            <input type="text" name="username">
+          </div>
+        </div>
+
+        <div style="width: 400px;">
+          <div class="card_pass">
+            <div class="card-divider">
+              <h4> Password: </h4>
+            </div>
+            <input type="password" name="password">
+          </div>
+        </div>
+
+        <div style="width: 400px;">
+          <div class="card_sub">
+            <button class="hollow submit primary button"> Login </button>
+          </div>
+        </div>
+      </form>
+
+      <br>
+      <h3> {{ message }} </h3>
+      <br>
+      <br>
+      <br>
+      <h3>
+          New User? Register here
+      </h3>
+
+      <div class="primary callout_register">
+        <button class="hollow button" type="button" name="register">
+          <a href="{{ url_for('register')}}">Register</a>
+       </button>
+      </div>
+
+      <div class="primary callout_register">
+        <button type="hollow button" name="loadings">
+          <a href="{{ url_for('waiting')}}">waiting</a>
+        </button>
+      </div>
+
+    </div>
+  </body>
+
+
+</html>
