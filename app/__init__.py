@@ -9,6 +9,7 @@ from flask import render_template   #facilitate jinja templating
 from flask import request           #facilitate form submission
 from flask import session           #facilitate user sessions
 from flask import redirect, url_for #to redirect to a different URL
+import os
 
 app = Flask(__name__)  # create Flask object
 app.secret_key = os.urandom(32)     #randomized string for SECRET KEY (for interacting with operating system)
@@ -21,7 +22,7 @@ c.execute("create table if not exists accounts(username TEXT, password TEXT);")
 db.commit()
 
 @app.route("/", methods=['GET', 'POST'])
-def display_homepage():
+def index():
     print("\n\n\n")
     print("***DIAG: this Flask obj ***")
     print(app)  # displays app
@@ -38,7 +39,8 @@ def display_homepage():
         print("user is logged in as " + session['username'] + ". Redirecting to /main")
         return redirect("/main")
 
-    return render_template('index.html')
+    #return render_template('index.html')
+    return redirect("/login")
 
 # REGISTER
 @app.route("/register", methods=['GET', 'POST'])
@@ -85,7 +87,6 @@ def register():
         # if there isn't an account associated with said username then create one
         if not c.fetchone():
             c.execute("insert into accounts values(?, ?)", (input_username, input_password))
-            c.execute("insert into stats values(?, 0, 0)", (input_username,))
             return render_template('login.html')
         # if username is already taken
         else:
@@ -141,22 +142,29 @@ def login():
         error_msg += "Please try again."
         return render_template('login.html', message = error_msg)
 
+# logout and redirect to login page
+@app.route("/logout", methods=['GET', 'POST'])
+def logout():
+    # remove the username from the session if it's there
+    session.pop('username', None)
+    print("user has logged out. Redirecting to /login")
+    return redirect("/login")
 
-@app.route("/auth", methods=['GET', 'POST'])
-def authenticate():
-    print("\n\n\n")
-    print("***DIAG: this Flask obj ***")
-    print(app)
-    print("***DIAG: request obj ***")
-    print(request)
-    print("***DIAG: request.args ***")
-    print(request.form)  # displays entered info as dict
-    print("***DIAG: request.args['username']  ***")
-    print(request.form['username'])
-    print("***DIAG: request.headers ***")
-    # metadata for the server about request+machine requesting
-    print(request.headers)
-    return f"Waaaa hooo HAAAH {request.form['username']}"  # response to a form submission
+# @app.route("/auth", methods=['GET', 'POST'])
+# def authenticate():
+#     print("\n\n\n")
+#     print("***DIAG: this Flask obj ***")
+#     print(app)
+#     print("***DIAG: request obj ***")
+#     print(request)
+#     print("***DIAG: request.args ***")
+#     print(request.form)  # displays entered info as dict
+#     print("***DIAG: request.args['username']  ***")
+#     print(request.form['username'])
+#     print("***DIAG: request.headers ***")
+#     # metadata for the server about request+machine requesting
+#     print(request.headers)
+#     return f"Waaaa hooo HAAAH {request.form['username']}"  # response to a form submission
 
 @app.route("/main", methods=['GET', 'POST'])
 def main():

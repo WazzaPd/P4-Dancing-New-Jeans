@@ -1,0 +1,54 @@
+Dancing New Jeans
+David Chen
+Joseph Wu
+Navid Abedin
+pd 8
+---------------------
+
+
+
+ ______   ______   __   __   __       ______   _______     
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__  
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\ 
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/ 
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \ 
+    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/ 
+==============================================================
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+fristL -- TIMESTAMP
+--------------------------------------------------------------
+
+DavidC -- 2023-05-05 12:46
+- Created js function and linked to file: main.html
+
+JosephW -- 2023-05-05 15:33
+- Added sqlite3 database:
+    --- formatted as accounts: username, password ---
+- Reorganized files and folders
+    - Created files:  login.html
+                      register.html
+                      changed index.html to main.html
+- updated __init.py__: 
+    - Modified display_homepage() to index():
+            - commented out rendertemplate('index.hmtl')
+            - if username in session redirect to /main
+                else redirect to login.html
+    - created register():
+            - links to register.html(register page)
+            - set up error message if nothing/pre-existing entered into form
+            - read/add to sqlite3 table
+    - created login():
+            - linked to login.html(login page)
+            - set up error message if incorrect or missing entered into form
+            - if user in session, auto redirect to /main
+                else once correct form, redirect to /main
+    - created logout():
+            - removes user from session
+            - redirect to /login
+    - created main():
+            - linked to main.hmtl(Main page)
+            - redirect to /login in user not in session
+
