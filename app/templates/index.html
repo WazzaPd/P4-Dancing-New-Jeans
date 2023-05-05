@@ -3,24 +3,8 @@
 
 <head>
     <title> home </title>
-    <script>
-        // run js after page load
-        window.onload = function () {
-            const clickMe = document.getElementById('click');
-
-            clickMe.addEventListener('click', () => {
-                const main = document.getElementById('main');
-
-                for (let i = 0; i < 100; i++) {
-                    setTimeout(() => {
-                        main.style.fontSize = `${i}px`;
-                        main.style.color = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
-                    }, i * 100);
-                }
-            });
-        };
-
-    </script>
+    <script src="{{url_for('static', filename='index.js')}}"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='index.css')}}">
 </head>
 
 <body>
