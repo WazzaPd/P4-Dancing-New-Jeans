@@ -53,3 +53,11 @@ JosephW -- 2023-05-05 15:33
             - redirect to /login in user not in session
 - Note: html is styled in foundation, will need to change to bootstrap
 
+NakibA -- 2023-05-08 14:04
+- Added to Readme.md
+
+JosephW -- 2023-05-08 14:04
+- Added Navbar
+- buy.html
+- sell.html
+- rent.html

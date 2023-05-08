@@ -174,6 +174,29 @@ def main():
         print("user is not logged in. Redirecting to /login")
         return redirect("/login")
 
+@app.route("/buy", methods=['GET', 'POST'])
+def buy():
+    if 'username' in session:
+        return render_template('buy.html')
+    else:
+        print("user is not logged in. Redirecting to /login")
+        return redirect("/login")
+    
+@app.route("/rent", methods=['GET', 'POST'])
+def rent():
+    if 'username' in session:
+        return render_template('rent.html')
+    else:
+        print("user is not logged in. Redirecting to /login")
+        return redirect("/login")
+    
+@app.route("/sell", methods=['GET', 'POST'])
+def sell():
+    if 'username' in session:
+        return render_template('sell.html')
+    else:
+        print("user is not logged in. Redirecting to /login")
+        return redirect("/login")
 
 if __name__ == "__main__":  # false if this file imported as module
     # enable debugging, auto-restarting of server when this file is modified
