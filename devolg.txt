@@ -51,4 +51,5 @@ JosephW -- 2023-05-05 15:33
     - created main():
             - linked to main.hmtl(Main page)
             - redirect to /login in user not in session
+- Note: html is styled in foundation, will need to change to bootstrap
 
