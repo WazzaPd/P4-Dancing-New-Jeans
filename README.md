@@ -15,8 +15,8 @@
 ### Launch Codes:
 ( In progress ... will be changed later )
 
-1. ``` git clone ...```
-2. ``` cd .. ```
+1. ``` git clone git@github.com:WazzaPd/P4-Dancing-New-Jeans.git willoz```
+2. ``` cd willoz ```
 3. ``` python3 __init.py___ ```
 4. Click on the localhost
 
