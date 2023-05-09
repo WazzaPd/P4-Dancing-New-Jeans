@@ -72,3 +72,6 @@ DavidC -- 2023-05-09 12:13
 - Created base.html to be the base template for all other templates to inherit from
 - New navbar for all pages
 - Custom CSS to reflect the centered logo on zillow's navbar
+
+JosephW -- 2023-05-09 14:05
+- Debug
