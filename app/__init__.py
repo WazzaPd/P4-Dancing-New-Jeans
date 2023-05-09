@@ -162,7 +162,7 @@ def logout():
     # remove the username from the session if it's there
     session.pop('username', None)
     print("user has logged out. Redirecting to /login")
-    return redirect("/login")
+    return redirect("/")
 
 # @app.route("/auth", methods=['GET', 'POST'])
 # def authenticate():
@@ -184,28 +184,22 @@ def logout():
 @app.route("/buy", methods=['GET', 'POST'])
 def buy():
     if 'username' in session:
-        return render_template('buy.html')
-    else:
-        print("user is not logged in. Redirecting to /login")
-        return redirect("/login")
+        return render_template('buy.html', username = True)
+    return render_template('buy.html', username = False)
+    
 
 
 @app.route("/rent", methods=['GET', 'POST'])
 def rent():
     if 'username' in session:
-        return render_template('rent.html')
-    else:
-        print("user is not logged in. Redirecting to /login")
-        return redirect("/login")
-
+        return render_template('rent.html', username = True)
+    return render_template('rent.html', username = False)
 
 @app.route("/sell", methods=['GET', 'POST'])
 def sell():
     if 'username' in session:
-        return render_template('sell.html')
-    else:
-        print("user is not logged in. Redirecting to /login")
-        return redirect("/login")
+        return render_template('sell.html', username = True)
+    return render_template('sell.html', username = False)
 
 
 if __name__ == "__main__":  # false if this file imported as module
