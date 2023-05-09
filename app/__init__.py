@@ -3,23 +3,26 @@
 # Period 08
 # Dec 2023
 
-import sqlite3                      #for database building
-from flask import Flask             #facilitate flask webserving
-from flask import render_template   #facilitate jinja templating
-from flask import request           #facilitate form submission
-from flask import session           #facilitate user sessions
-from flask import redirect, url_for #to redirect to a different URL
+import sqlite3  # for database building
+from flask import Flask  # facilitate flask webserving
+from flask import render_template  # facilitate jinja templating
+from flask import request  # facilitate form submission
+from flask import session  # facilitate user sessions
+from flask import redirect, url_for  # to redirect to a different URL
 import os
 
 app = Flask(__name__)  # create Flask object
-app.secret_key = os.urandom(32)     #randomized string for SECRET KEY (for interacting with operating system)
+# randomized string for SECRET KEY (for interacting with operating system)
+app.secret_key = os.urandom(32)
 
-DB_FILE="tables.db"
-db = sqlite3.connect(DB_FILE, check_same_thread=False) #open if file exists, otherwise create
-c = db.cursor()               #facilitate db ops -- you will use cursor to trigger db events
+DB_FILE = "tables.db"
+# open if file exists, otherwise create
+db = sqlite3.connect(DB_FILE, check_same_thread=False)
+c = db.cursor()  # facilitate db ops -- you will use cursor to trigger db events
 
 c.execute("create table if not exists accounts(username TEXT, password TEXT);")
 db.commit()
+
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -36,20 +39,24 @@ def index():
     print(request.headers)
 
     if 'username' in session:
-        print("user is logged in as " + session['username'] + ". Redirecting to /main")
+        print("user is logged in as " +
+              session['username'] + ". Redirecting to /main")
         return redirect("/main")
 
-    #return render_template('index.html')
-    return redirect("/login")
+    return render_template('index.html')
+    # return redirect("/login")
 
 # REGISTER
+
+
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     # Already logged in
     if 'username' in session:
-        print("user is logged in as " + session['username'] + " is already logged in. Redirecting to /main")
+        print("user is logged in as " +
+              session['username'] + " is already logged in. Redirecting to /main")
         return redirect("/main")
-    
+
     # GET
     if request.method == 'GET':
         return render_template('register.html')
@@ -72,13 +79,13 @@ def register():
         if input_confirm_password == '':
             error_msg += "Please confirm your password. \n"
 
-        return render_template('register.html', message = error_msg)
-        
+        return render_template('register.html', message=error_msg)
+
     # if info is entered into fields
     else:
         # Checks for password/confirm password match
         if input_password != input_confirm_password:
-            return render_template('register.html', message = "Passwords do not match. Please try again.")
+            return render_template('register.html', message="Passwords do not match. Please try again.")
 
         # Checks for existing username in accounts table
         var = (input_username,)
@@ -86,18 +93,22 @@ def register():
 
         # if there isn't an account associated with said username then create one
         if not c.fetchone():
-            c.execute("insert into accounts values(?, ?)", (input_username, input_password))
+            c.execute("insert into accounts values(?, ?)",
+                      (input_username, input_password))
             return render_template('login.html')
         # if username is already taken
         else:
-            return render_template('register.html', message = "Username is already taken. Please select another username.")
+            return render_template('register.html', message="Username is already taken. Please select another username.")
 
 # login process
+
+
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     # Already logged in
     if 'username' in session:
-        print("user is logged in as " + session['username'] + " is already logged in. Redirecting to /main")
+        print("user is logged in as " +
+              session['username'] + " is already logged in. Redirecting to /main")
         return redirect("/main")
 
     # GET
@@ -110,16 +121,19 @@ def login():
         input_password = request.form['password']
 
     # Searches accounts table for user-password combination
-    c.execute("select username from accounts where username=? and password=?;", (input_username, input_password))
+    c.execute("select username from accounts where username=? and password=?;",
+              (input_username, input_password))
 
     # login_check
     if c.fetchone():
         print("Login success!")
-        if request.method == 'GET': #For 'get'
-            session['username'] = request.args['username'] # stores username in session
+        if request.method == 'GET':  # For 'get'
+            # stores username in session
+            session['username'] = request.args['username']
 
-        if request.method == 'POST': #For 'post'
-            session['username'] = request.form['username'] # stores username in session
+        if request.method == 'POST':  # For 'post'
+            # stores username in session
+            session['username'] = request.form['username']
 
         return redirect("/main")
 
@@ -134,15 +148,17 @@ def login():
         if not c.fetchone():
             error_msg += "Username is incorrect or not found. \n"
 
-        #Password check
+        # Password check
         c.execute(password_check, (input_password,))
         if not c.fetchone():
             error_msg += "Password is incorrect or not found. \n"
 
         error_msg += "Please try again."
-        return render_template('login.html', message = error_msg)
+        return render_template('login.html', message=error_msg)
 
 # logout and redirect to login page
+
+
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
     # remove the username from the session if it's there
@@ -166,6 +182,7 @@ def logout():
 #     print(request.headers)
 #     return f"Waaaa hooo HAAAH {request.form['username']}"  # response to a form submission
 
+
 @app.route("/main", methods=['GET', 'POST'])
 def main():
     if 'username' in session:
@@ -174,6 +191,7 @@ def main():
         print("user is not logged in. Redirecting to /login")
         return redirect("/login")
 
+
 @app.route("/buy", methods=['GET', 'POST'])
 def buy():
     if 'username' in session:
@@ -181,7 +199,8 @@ def buy():
     else:
         print("user is not logged in. Redirecting to /login")
         return redirect("/login")
-    
+
+
 @app.route("/rent", methods=['GET', 'POST'])
 def rent():
     if 'username' in session:
@@ -189,7 +208,8 @@ def rent():
     else:
         print("user is not logged in. Redirecting to /login")
         return redirect("/login")
-    
+
+
 @app.route("/sell", methods=['GET', 'POST'])
 def sell():
     if 'username' in session:
@@ -197,6 +217,7 @@ def sell():
     else:
         print("user is not logged in. Redirecting to /login")
         return redirect("/login")
+
 
 if __name__ == "__main__":  # false if this file imported as module
     # enable debugging, auto-restarting of server when this file is modified

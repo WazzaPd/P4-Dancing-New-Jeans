@@ -65,3 +65,10 @@ JosephW -- 2023-05-08 14:04
 
 DavidC -- 2023-05-08 14:04
 - Set up foundation for how to replicate zillow by researching bootstrap components like modal and carousel
+
+DavidC -- 2023-05-09 12:13
+- Lint python to be more readable
+- Set up templates for code to be more modular
+- Created base.html to be the base template for all other templates to inherit from
+- New navbar for all pages
+- Custom CSS to reflect the centered logo on zillow's navbar
