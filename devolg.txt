@@ -23,6 +23,7 @@ fristL -- TIMESTAMP
 
 DavidC -- 2023-05-05 12:46
 - Created js function and linked to file: main.html
+- Figured out how to serve static files like css/js/images from the static folder
 
 JosephW -- 2023-05-05 15:33
 - Added sqlite3 database:
@@ -61,3 +62,6 @@ JosephW -- 2023-05-08 14:04
 - buy.html
 - sell.html
 - rent.html
+
+DavidC -- 2023-05-08 14:04
+- Set up foundation for how to replicate zillow by researching bootstrap components like modal and carousel
