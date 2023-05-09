@@ -20,10 +20,10 @@
         <div class="container-fluid">
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
+                    <li class="nav-item ms-5 pe-5">
                         <a href="/buy" class="nav-link">Buy</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item pe-5">
                         <a href="/rent" class="nav-link">Rent</a>
                     </li>
                     <li class="nav-item">
@@ -31,9 +31,9 @@
                     </li>
                 </ul>
             </div>
-            <div class="d-flex justify-content-end">
-                <a class="navbar-brand" href="/">
-                    <img src="/static/image/Willow.png" alt="Logo" width="120px" class="d-inline-block align-text-top" />
+            <div class="me-auto order-0">
+                <a class="navbar-brand top-0" href="/">
+                    <img src="/static/image/Willow.png" alt="Logo" width="120px" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2">
                     <span class="navbar-toggler-icon"></span>
@@ -42,7 +42,7 @@
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul class="navbar-nav ms-auto">
                     <!--Store Locator and Icon-->
-                    <li class="store-locator">
+                    <li class="store-locator pe-5">
                         <a href="/stores">
                             <i class="fa fa-map-marker"></i>
                             <span style="
@@ -55,11 +55,11 @@
                     </li>
 
                     {% if username %}
-                    <li class="nav-item">
+                    <li class="nav-item me-5">
                         <a href="/logout" class="nav-link">Logout</a>
                     </li>
                     {% else %}
-                    <li class="nav-item">
+                    <li class="nav-item me-5">
                         <a href="/login" class="nav-link">Sign In</a>
                     </li>
                     {% endif %}
