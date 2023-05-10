@@ -23,3 +23,15 @@
   letter-spacing: 2px;
   transition: all 0.5s ease;
 }
+
+#lisitngs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#card {
+  display: inline-block;
+  width: 18rem;
+  padding: 10rem;
+}

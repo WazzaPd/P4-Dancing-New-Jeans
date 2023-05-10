@@ -40,11 +40,9 @@ def index():
 
     if 'username' in session:
         print("user is logged in as " +
-              session['username'] + ". Redirecting to /main")
-        return redirect("/main")
-
-    return render_template('index.html')
-    # return redirect("/login")
+              session['username'] + ". Redirecting to /")
+        return render_template('index.html', username = True)
+    return render_template('index.html', username = False)
 
 # REGISTER
 
@@ -54,8 +52,8 @@ def register():
     # Already logged in
     if 'username' in session:
         print("user is logged in as " +
-              session['username'] + " is already logged in. Redirecting to /main")
-        return redirect("/main")
+              session['username'] + " is already logged in. Redirecting to /")
+        return redirect("/")
 
     # GET
     if request.method == 'GET':
@@ -108,8 +106,8 @@ def login():
     # Already logged in
     if 'username' in session:
         print("user is logged in as " +
-              session['username'] + " is already logged in. Redirecting to /main")
-        return redirect("/main")
+              session['username'] + " is already logged in. Redirecting to /")
+        return redirect("/")
 
     # GET
     if request.method == "GET":
@@ -135,7 +133,7 @@ def login():
             # stores username in session
             session['username'] = request.form['username']
 
-        return redirect("/main")
+        return redirect("/")
 
     else:
         print("Login failed")
@@ -164,7 +162,7 @@ def logout():
     # remove the username from the session if it's there
     session.pop('username', None)
     print("user has logged out. Redirecting to /login")
-    return redirect("/login")
+    return redirect("/")
 
 # @app.route("/auth", methods=['GET', 'POST'])
 # def authenticate():
@@ -183,40 +181,34 @@ def logout():
 #     return f"Waaaa hooo HAAAH {request.form['username']}"  # response to a form submission
 
 
-@app.route("/main", methods=['GET', 'POST'])
-def main():
-    if 'username' in session:
-        return render_template('main.html')
-    else:
-        print("user is not logged in. Redirecting to /login")
-        return redirect("/login")
+# @app.route("/index", methods=['GET', 'POST'])
+# def main():
+#     if 'username' in session:
+#         return render_template('index.html')
+#     else:
+#         print("user is not logged in. Redirecting to /login")
+#         return redirect("/login")
 
 
 @app.route("/buy", methods=['GET', 'POST'])
 def buy():
     if 'username' in session:
-        return render_template('buy.html')
-    else:
-        print("user is not logged in. Redirecting to /login")
-        return redirect("/login")
+        return render_template('buy.html', username = True)
+    return render_template('buy.html', username = False)
+    
 
 
 @app.route("/rent", methods=['GET', 'POST'])
 def rent():
     if 'username' in session:
-        return render_template('rent.html')
-    else:
-        print("user is not logged in. Redirecting to /login")
-        return redirect("/login")
-
+        return render_template('rent.html', username = True)
+    return render_template('rent.html', username = False)
 
 @app.route("/sell", methods=['GET', 'POST'])
 def sell():
     if 'username' in session:
-        return render_template('sell.html')
-    else:
-        print("user is not logged in. Redirecting to /login")
-        return redirect("/login")
+        return render_template('sell.html', username = True)
+    return render_template('sell.html', username = False)
 
 
 if __name__ == "__main__":  # false if this file imported as module
