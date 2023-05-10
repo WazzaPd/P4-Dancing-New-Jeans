@@ -14,3 +14,18 @@
   left: 50%;
   position: absolute;
 }
+
+#lisitngs{
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+#card{
+
+  display: inline-block;
+  width: 18rem; 
+  padding: 10rem;
+}

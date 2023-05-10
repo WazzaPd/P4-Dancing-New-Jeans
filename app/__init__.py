@@ -40,8 +40,8 @@ def index():
 
     if 'username' in session:
         print("user is logged in as " +
-              session['username'] + ". Redirecting to /main")
-        return redirect("/main")
+              session['username'] + ". Redirecting to /index")
+        return redirect("/index")
 
     return render_template('index.html')
     # return redirect("/login")
@@ -54,8 +54,8 @@ def register():
     # Already logged in
     if 'username' in session:
         print("user is logged in as " +
-              session['username'] + " is already logged in. Redirecting to /main")
-        return redirect("/main")
+              session['username'] + " is already logged in. Redirecting to /index")
+        return redirect("/index")
 
     # GET
     if request.method == 'GET':
@@ -108,8 +108,8 @@ def login():
     # Already logged in
     if 'username' in session:
         print("user is logged in as " +
-              session['username'] + " is already logged in. Redirecting to /main")
-        return redirect("/main")
+              session['username'] + " is already logged in. Redirecting to /index")
+        return redirect("/index")
 
     # GET
     if request.method == "GET":
@@ -135,7 +135,7 @@ def login():
             # stores username in session
             session['username'] = request.form['username']
 
-        return redirect("/main")
+        return redirect("/index")
 
     else:
         print("Login failed")
@@ -183,10 +183,10 @@ def logout():
 #     return f"Waaaa hooo HAAAH {request.form['username']}"  # response to a form submission
 
 
-@app.route("/main", methods=['GET', 'POST'])
+@app.route("/index", methods=['GET', 'POST'])
 def main():
     if 'username' in session:
-        return render_template('main.html')
+        return render_template('index.html')
     else:
         print("user is not logged in. Redirecting to /login")
         return redirect("/login")
