@@ -93,3 +93,12 @@ DavidC -- 2023-05-10 12:13
 - Started login modal for home page
 - Looked into bootstrap carousel for home page 
 - Finished login modal for home page and added to base.html
+
+NakibA -- 2023-05-10 13:58
+- Implement the carousel feature on the frontend
+- Copy over the image from Zillow frontend website and implement it on our website
+- Planned out how to visualize the data for SAT and median house price
+
+David -- 2023-05-10 14:00
+- Helped Nakib figure out how to setup the image so that it fits into the div tag properly
+- Researched the Zillow API key to figure out how to handle the data generation
