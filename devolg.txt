@@ -91,3 +91,5 @@ DavidC -- 2023-05-10 12:13
 - Added some more custom css for index page
 - Added bootstrap's js, css, and jquery to base.html (TODO REFACTOR)
 - Started login modal for home page
+- Looked into bootstrap carousel for home page 
+- Finished login modal for home page and added to base.html
