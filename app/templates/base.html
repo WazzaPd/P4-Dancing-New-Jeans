@@ -13,33 +13,30 @@
 
 <body>
     <!-- Start Navbar -->
-    <nav class="navbar navbar-light bg-light" style="background-color: white;">
+    <nav class="navbar navbar-light" style="background-color: white;">
         <div class="container">
             <a class="navbar-brand" href="/">
                 <img src="/static/image/Willow.png" alt="Logo" width="120px" class="d-inline-block align-text-top" />
             </a>
 
 
-            <!--Store Locator and Icon-->
-            <div class="store-locator">
+            <div>
                 <a href="/stores">
-                    <i class="fa fa-map-marker"></i>
-                    <span style="
-              font-size: 15px;
-              font-weight: 500;
-              margin-left: 5px;
-              font-size: larger;
-            ">Store Locator</span>
+                    Buy
                 </a>
             </div>
 
             {% if username %}
             <div>
-                <a href="/logout" class="btn btn-outline-dark">Logout</a>
+                <a href="
+                    {{ url_for('logout') }}
+                " class="btn btn-outline-dark">Logout</a>
             </div>
             {% else %}
             <div>
-                <a href="/login" class="btn btn-outline-none">Sign In</a>
+                <a href="
+                    {{ url_for('login') }}
+                    " class="btn btn-outline-none">Sign In</a>
             </div>
             {% endif %}
         </div>
