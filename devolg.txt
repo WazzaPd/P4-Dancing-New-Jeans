@@ -56,6 +56,7 @@ JosephW -- 2023-05-05 15:33
 
 NakibA -- 2023-05-08 14:04
 - Added to Readme.md
+- Created the Willoz logo for the website
 
 JosephW -- 2023-05-08 14:04
 - Added Navbar
@@ -77,3 +78,9 @@ JosephW -- 2023-05-09 14:05
 - Debug
 - Added Nav items links:
     - links to buy.html, rent.hmtl, sell.html
+
+NakibA -- 2023-05-09
+- Created the skeleton for the cards which will contain the listing for each house
+- Debugged the orientation of the cards --> still need to fix centering all the items in the div tag
+- Fixed merge conflict
+
