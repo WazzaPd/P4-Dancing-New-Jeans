@@ -99,6 +99,10 @@ NakibA -- 2023-05-10 13:58
 - Copy over the image from Zillow frontend website and implement it on our website
 - Planned out how to visualize the data for SAT and median house price
 
-David -- 2023-05-10 14:00
+DavidC -- 2023-05-10 14:00
 - Helped Nakib figure out how to setup the image so that it fits into the div tag properly
 - Researched the Zillow API key to figure out how to handle the data generation
+
+JosephW -- 2023-05-10 12:24
+- Fixed collapse toggle button
+    - IMPORTANT: Added Bootstrap jsdelivr 5.2.3 script
