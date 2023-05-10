@@ -38,14 +38,13 @@
             </div>
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul class="navbar-nav ms-auto">
-
                     {% if username %}
-                    <li class="nav-item me-5">
+                    <li class="nav-item me-3">
                         <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
                     </li>
 
                     {% else %}
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">
+                    <button type="button" class="btn btn-primary me-3" data-toggle="modal" data-target="#loginModal">
                         Login
                     </button>
 
@@ -89,7 +88,9 @@
                         </li>
                         {% endif %}
                     </div>
+                </ul>
             </div>
+        </div>
     </nav>
 
     {% block main %} {% endblock %}
