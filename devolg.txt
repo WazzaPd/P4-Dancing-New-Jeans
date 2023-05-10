@@ -89,4 +89,5 @@ NakibA -- 2023-05-09
 DavidC -- 2023-05-10 12:13
 - Fix merge conflicts with new code
 - Added some more custom css for index page
-
+- Added bootstrap's js, css, and jquery to base.html (TODO REFACTOR)
+- Started login modal for home page
