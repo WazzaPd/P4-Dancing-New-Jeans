@@ -24,7 +24,7 @@
   transition: all 0.5s ease;
 }
 
-#lisitngs {
+/* #lisitngs {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,4 +34,10 @@
   display: inline-block;
   width: 18rem;
   padding: 10rem;
+} */
+
+#banner{
+  background-image: url(https://wp-tid.zillowstatic.com/bedrock/app/uploads/sites/5/2022/08/ZG_ZPA_08_21_Americana_ExtFront_1081_4936px_desktopWebp2x-2-scaled.webp) !important;
+  height: 50vh;
 }
+
