@@ -86,3 +86,7 @@ NakibA -- 2023-05-09
 - Debugged the orientation of the cards --> still need to fix centering all the items in the div tag
 - Fixed merge conflict
 
+DavidC -- 2023-05-10 12:13
+- Fix merge conflicts with new code
+- Added some more custom css for index page
+
