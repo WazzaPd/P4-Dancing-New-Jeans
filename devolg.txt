@@ -1,7 +1,7 @@
 Dancing New Jeans
 David Chen
 Joseph Wu
-Navid Abedin
+Nakib Abedin
 pd 8
 ---------------------
 
@@ -106,3 +106,8 @@ DavidC -- 2023-05-10 14:00
 JosephW -- 2023-05-10 12:24
 - Fixed collapse toggle button
     - IMPORTANT: Added Bootstrap jsdelivr 5.2.3 script
+
+DavidC -- 2023-05-11 13:41
+- Found and played around with new api for real estate data
+    - Zillow proved to be not viable due long response times from team 
+- ATTOM real estate api allows for similar functionality and thus we will be opting for this instead
