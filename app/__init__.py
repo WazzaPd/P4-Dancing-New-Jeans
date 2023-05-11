@@ -49,11 +49,6 @@ def index():
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
-    # Already logged in
-    if 'email' in session:
-        print("user is logged in as " +
-              session['email'] + " is already logged in. Redirecting to /")
-        return redirect("/")
 
     # GET
     if request.method == 'GET':
