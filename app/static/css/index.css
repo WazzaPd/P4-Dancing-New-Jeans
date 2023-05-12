@@ -32,7 +32,7 @@
 
 #banner{
   background-image: url(https://wp-tid.zillowstatic.com/bedrock/app/uploads/sites/5/2022/08/ZG_ZPA_08_21_Americana_ExtFront_1081_4936px_desktopWebp2x-2-scaled.webp) !important;
-  height: 50vh;
+  background-position: 60% bottom;
 }
 
 #card {
