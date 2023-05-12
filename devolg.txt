@@ -111,3 +111,6 @@ DavidC -- 2023-05-11 13:41
 - Found and played around with new api for real estate data
     - Zillow proved to be not viable due long response times from team 
 - ATTOM real estate api allows for similar functionality and thus we will be opting for this instead
+
+DavidC -- 2023-05-13 12:52
+- Added API keys to gitignore
