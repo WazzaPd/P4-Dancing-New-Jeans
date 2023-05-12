@@ -10,6 +10,11 @@ from flask import request  # facilitate form submission
 from flask import session  # facilitate user sessions
 from flask import redirect, url_for  # to redirect to a different URL
 import os
+import requests
+
+dirname = os.path.dirname(__file__)
+attomKey = open(os.path.join(dirname, "keys/attom.txt")).read()
+
 
 app = Flask(__name__)  # create Flask object
 # randomized string for SECRET KEY (for interacting with operating system)
@@ -204,6 +209,28 @@ def sell():
     if 'email' in session:
         return render_template('sell.html', email = True)
     return render_template('sell.html', email = False)
+
+#proxy api routes for attom property api
+@app.route("/api/property/address", methods=['GET'])
+def address():
+    #fetch data and return json
+    headers = {
+        'Accept': 'application/json, application/json',
+        'apikey': attomKey,
+    }
+
+    # required params
+    if 'zip' not in request.args:
+        return {'error': 'missing required parameter: zip'}
+
+    params = {
+        'postalcode': request.args['zip'],
+        'page': '1',
+        'pagesize': request.args['pagesize'] if 'pagesize' in request.args else '100',
+    }
+
+    response = requests.get('https://api.gateway.attomdata.com/propertyapi/v1.0.0/property/address', params=params, headers=headers)
+    return response.json()
 
 
 if __name__ == "__main__":  # false if this file imported as module
