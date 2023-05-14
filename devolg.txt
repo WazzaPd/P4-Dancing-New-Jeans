@@ -119,3 +119,7 @@ NakibA -- 2023-05-13 1:47
 - Initialized backend files
 - Setup skeleton for the attom api file
 - Read documentation and implemented baseline for API calls.
+
+DavidC -- 2023-05-14 17:30
+- Revamped login modal to allow for registration and login
+- New tabs for login and register
