@@ -125,3 +125,5 @@ DavidC -- 2023-05-14 17:30
 - New tabs for login and register
 - Added new hero section with search bar
 - Emulate the zillow banner with regards to image placement and such
+- Added new custom css to emulate zillow's search bar and home page
+- Added js to redirect search queries to new page with query params encoded in url

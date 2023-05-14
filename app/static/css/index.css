@@ -30,7 +30,7 @@
   justify-content: center;
 } */
 
-#banner{
+#banner {
   background-image: url(https://wp-tid.zillowstatic.com/bedrock/app/uploads/sites/5/2022/08/ZG_ZPA_08_21_Americana_ExtFront_1081_4936px_desktopWebp2x-2-scaled.webp) !important;
   background-position: 60% bottom;
 }
@@ -39,4 +39,36 @@
   display: inline-block;
   width: 18rem;
   padding: 10rem;
+}
+
+.searchbar {
+  margin-bottom: auto;
+  margin-top: auto;
+  height: 60px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.search_input {
+  color: black;
+  border: 0;
+  outline: 0;
+  width: 30vw;
+  /* background: none; */
+  padding: 0 10px;
+  /* caret-color: transparent; */
+  line-height: 40px;
+}
+
+.search_icon {
+  height: 40px;
+  width: 40px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: grey;
+  text-decoration: none;
 }

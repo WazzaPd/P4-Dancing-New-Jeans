@@ -2,6 +2,24 @@
 
 <link rel="stylesheet" href="/static/css/index.css" />
 
+<script>
+  window.onload = function () {
+    const search = document.querySelector(".search_input");
+    const searchIcon = document.querySelector(".search_icon");
+
+    searchIcon.addEventListener("click", () => {
+      window.location.href = `/search?q=${search.value}`;
+    });
+
+    search.addEventListener("keyup", (e) => {
+      if (e.keyCode === 13) {
+        window.location.href = `/search?q=${search.value}`;
+      }
+    });
+  };
+
+</script>
+
 <body>
   <!-- <script src="static/js/index.js"></script> 
     <button id="click">
@@ -20,14 +38,16 @@
           background-image: url('https://wp-tid.zillowstatic.com/bedrock/app/uploads/sites/5/2022/08/ZG_ZPA_08_21_Americana_ExtFront_1081_1440_desktopWebp-2.webp');
           height: 400px;
           background-repeat: no-repeat;
-          background-size: cover;    background-position: 60% bottom;
+          background-size: cover; background-position: 60% bottom;
         ">
       <div>
         <div class="d-flex justify-content-center align-items-center h-100">
           <div class="text-white">
             <h1 class="mb-3">Find it. Tour it. Own it. </h1>
-            <h4 class="mb-3">Subheading</h4>
-            <a class="btn btn-outline-light btn-lg" href="#!" role="button">Call to action</a>
+            <div class="searchbar">
+              <input class="search_input" type="text" placeholder="Enter an address, neighborhood, city, or ZIP code">
+              <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+            </div>
           </div>
         </div>
       </div>
