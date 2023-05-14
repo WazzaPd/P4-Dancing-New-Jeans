@@ -123,3 +123,5 @@ NakibA -- 2023-05-13 1:47
 DavidC -- 2023-05-14 17:30
 - Revamped login modal to allow for registration and login
 - New tabs for login and register
+- Added new hero section with search bar
+- Emulate the zillow banner with regards to image placement and such
