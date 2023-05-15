@@ -1,5 +1,5 @@
-import requests
+# import requests
 
-KEY = open('/app/keys/attom.txt','r').read().strip()
+# KEY = open('/app/keys/attom.txt','r').read().strip()
 
-def get_info(id):
+# def get_info(id):
