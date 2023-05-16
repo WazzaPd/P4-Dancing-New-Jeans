@@ -1,3 +1,8 @@
+body, html {
+  margin: 0;
+  height: 100%;
+}
+
 #click {
   background-color: #4caf50;
   border: none;
@@ -39,6 +44,17 @@
   display: inline-block;
   width: 18rem;
   padding: 10rem;
+}
+
+#trending {
+    color: rgb(42, 42, 51);
+    -webkit-font-smoothing: antialiased;
+    text-transform: none;
+    font-family: "Open Sans", "Adjusted Arial", Tahoma, Geneva, sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0px;
 }
 
 .searchbar {
