@@ -120,3 +120,17 @@ NakibA -- 2023-05-13 1:47
 - Initialized backend files
 - Setup skeleton for the attom api file
 - Read documentation and implemented baseline for API calls.
+
+DavidC -- 2023-05-14 17:30
+- Revamped login modal to allow for registration and login
+- New tabs for login and register
+- Added new hero section with search bar
+- Emulate the zillow banner with regards to image placement and such
+- Added new custom css to emulate zillow's search bar and home page
+- Added js to redirect search queries to new page with query params encoded in url
+
+JosephW -- 2023-05-16 14:03
+- Added to sell.html
+
+JosephW -- 2023-05-16 16:56
+- Almost completed html for sell.html

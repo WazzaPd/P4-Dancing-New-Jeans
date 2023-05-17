@@ -8,7 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
     <script src="https://kit.fontawesome.com/339055163d.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/static/css/index.css" />
 </head>
 
 <body>
@@ -60,7 +59,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form class="px-2" action="{{ url_for('login') }}" method="POST">
+                                    <!-- <form class="px-2" action="{{ url_for('login') }}" method="POST">
                                         <div class="form-group">
                                             <label for="inputEmail" class="font-weight-bold">Email</label>
                                             <input type="email" class="form-control" id="inputEmail"
@@ -74,13 +73,80 @@
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-block"
                                             style="margin-top: 5%; width: 100%;">Log In</button>
-                                        <button href="/register">Sign Up</button>
-                                    </form>
-                                    <!-- <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                    </div> -->
+                                    </form> -->
+
+                                    <div class="card mx-auto border-0" style="width: 24rem;">
+                                        <div class="card-header border-bottom-0 bg-transparent">
+                                            </button>
+
+                                            <ul class="nav nav-tabs" id="myTab">
+                                                <li class="nav-item">
+                                                    <a href="#home" class="nav-link active"
+                                                        data-bs-toggle="tab">Login</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="#messages" class="nav-link"
+                                                        data-bs-toggle="tab">Register</a>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+
+                                        <div class="card-body pb-4">
+                                            <div class="tab-content">
+                                                <div class="tab-pane fade show active" id="home">
+                                                    <form class="px-2" action="{{ url_for('login') }}" method="POST">
+                                                        <div class="form-group">
+                                                            <label for="inputEmail"
+                                                                class="font-weight-bold">Email</label>
+                                                            <input type="email" class="form-control" id="inputEmail"
+                                                                aria-describedby="emailHelp" placeholder="Enter email"
+                                                                name="email">
+                                                        </div>
+                                                        <div class="form-group t">
+                                                            <label for="inputPassword"
+                                                                class="font-weight-bold">Password</label>
+                                                            <input type="password" class="form-control"
+                                                                id="inputPassword" placeholder="Password"
+                                                                name="password">
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary btn-block"
+                                                            style="margin-top: 5%; width: 100%;">Sign In</button>
+                                                    </form>
+                                                </div>
+                                                <div class="tab-pane fade" id="messages">
+                                                    <form class="px-2" action="{{ url_for('register') }}" method="POST">
+                                                        <div class="form-group">
+                                                            <label for="inputEmail"
+                                                                class="font-weight-bold">Email</label>
+                                                            <input type="email" class="form-control" id="inputEmail"
+                                                                aria-describedby="emailHelp" placeholder="Enter email"
+                                                                name="email">
+                                                        </div>
+                                                        <div class="form-group t">
+                                                            <label for="inputPassword"
+                                                                class="font-weight-bold">Password</label>
+                                                            <input type="password" class="form-control"
+                                                                id="inputPassword" placeholder="Password"
+                                                                name="password">
+                                                        </div>
+                                                        <ul>At least 8 characters</ul>
+                                                        <ul>
+                                                            Mix of letters and numbers</ul>
+                                                        <ul>
+                                                            At least 1 special character</ul>
+                                                        <ul>
+                                                            At least 1 lowercase letter and 1
+                                                            uppercase letter</ul>
+
+
+                                                        <button type="submit" class="btn btn-primary btn-block"
+                                                            style="margin-top: 5%; width: 100%;">Submit</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
