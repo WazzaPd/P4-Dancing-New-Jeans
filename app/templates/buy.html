@@ -87,35 +87,14 @@
 </head>
 
 <body>
-  <div class="container-fluid py-2 p-5">
+  <div class="container-fluid py-2 p-6">
     <div class="row py-20">
-      <div class="col-sm-3">
-        <h3 class="font-weight-light">
-          BetterBuy Stores near {{ location }}
-        </h3>
-      </div>
-      <div class="col-sm-9">
-        <h3>
-          Shop for your favorite products at your nearest BetterBuy store.
-        </h3>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d48361.03387809333!2d-73.9740152!3d40.74960480000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1684260217522!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
+      <div class="col-sm-9" style="position: sticky; ">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12096.247957251499!2d-73.78308580000001!3d40.71665185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1684342597211!5m2!1sen!2sus" width="600" height="450" style="border:0; position: sticky; top:0px; left: 0px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <div class="row">
       <div class="col-sm-3">
-        <div class="flex-col flex-nowrap">
-          {% for store in stores %}
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">{{ store.name }}</h5>
-              <p class="card-text">{{ store.address }} {{ store.city }}, {{ store.region }} {{ store.postalCode }}</p>
-              <a href="
-              https://maps.google.com/?q={{ store.address }} {{ store.city }} {{ store.postalCode }}
-              " class="btn btn-primary">Check on maps</a>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
+        
       </div>
       <div class="col-sm-9">
         <div id="myMap" style="position: relative"></div>
