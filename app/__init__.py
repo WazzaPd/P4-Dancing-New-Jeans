@@ -13,7 +13,7 @@ import os
 import requests
 
 dirname = os.path.dirname(__file__)
-attomKey = open(os.path.join(dirname, "keys/attom.txt")).read()
+# attomKey = open(os.path.join(dirname, "keys/attom.txt")).read()
 
 
 app = Flask(__name__)  # create Flask object
