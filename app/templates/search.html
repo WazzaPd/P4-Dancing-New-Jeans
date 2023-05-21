@@ -1,0 +1,110 @@
+{% extends 'base.html' %} {% block main %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript">
+        var map, infobox;
+
+        function GetMap() {
+            map = new Microsoft.Maps.Map("#myMap", {});
+
+            //Create an infobox at the center of the map but don't show it.
+            infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
+                visible: false,
+            });
+
+            //Assign the infobox to a map instance.
+            infobox.setMap(map);
+
+            // get store locations from /api/get_stores
+            // fetch("/api/get_stores")
+            //   .then((response) => response.json())
+            //   .then((data) => {
+            //     console.log(data);
+            //     for (var i = 0; i < data.length; i++) {
+            //       var pin = new Microsoft.Maps.Pushpin(
+            //         new Microsoft.Maps.Location(data[i].lat, data[i].lng)
+            //       );
+
+            //       //Store some metadata with the pushpin.
+            //       pin.metadata = {
+            //         title: data[i].name,
+            //         description: data[i].address,
+            //       };
+
+            //       //Add a click event handler to the pushpin.
+            //       Microsoft.Maps.Events.addHandler(pin, "click", pushpinClicked);
+
+            //       //Add pushpin to the map.
+            //       map.entities.push(pin);
+            //     }
+            //   });
+
+            //   var stores = "{{ stores | safe }}"
+            //   stores = stores.replace(/'/g, '"');
+            //   stores = JSON.parse(stores);
+
+
+            //   for (var i = 0; i < stores.length; i++) {
+            //     console.log(stores[i]);
+            //     var pin = new Microsoft.Maps.Pushpin(
+            //       new Microsoft.Maps.Location(stores[i].lat, stores[i].lng)
+            //     );
+
+            //     //Store some metadata with the pushpin.
+            //     pin.metadata = {
+            //       title: stores[i].name,
+            //       description: stores[i].address,
+            //     };
+
+            //     //Add a click event handler to the pushpin.
+            //     Microsoft.Maps.Events.addHandler(pin, "click", pushpinClicked);
+
+            //     //Add pushpin to the map.
+            //     map.entities.push(pin);
+            //   }
+        }
+
+        function pushpinClicked(e) {
+            //Make sure the infobox has metadata to display.
+            if (e.target.metadata) {
+                //Set the infobox options with the metadata of the pushpin.
+                infobox.setOptions({
+                    location: e.target.getLocation(),
+                    title: e.target.metadata.title,
+                    description: e.target.metadata.description,
+                    visible: true,
+                });
+            }
+        }
+    </script>
+    <script type="text/javascript"
+        src="http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=ApoGTzsEZsZMP51WQe65HrnjXH7j1SjtRzbCW25F65Q25_5Xlb_tdZodeYlELesQ"
+        async defer></script>
+</head>
+
+<body>
+    <div class="container-fluid py-2 p-6">
+        <div class="row py-20">
+            <div class="col-sm-9" style="position: sticky; ">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12096.247957251499!2d-73.78308580000001!3d40.71665185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1684342597211!5m2!1sen!2sus"
+                    width="600" height="450" style="border:0; position: sticky; top:0px; left: 0px;" allowfullscreen=""
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+
+                </div>
+                <div class="col-sm-9">
+                    <div id="myMap" style="position: relative"></div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
+{% endblock %}
