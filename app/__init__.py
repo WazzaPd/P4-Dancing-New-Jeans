@@ -13,7 +13,7 @@ import os
 import requests
 
 dirname = os.path.dirname(__file__)
-attomKey = open(os.path.join(dirname, "keys/attom.txt")).read()
+# attomKey = open(os.path.join(dirname, "keys/attom.txt")).read()
 
 
 app = Flask(__name__)  # create Flask object
@@ -63,10 +63,9 @@ def register():
     if request.method == 'POST':
         input_email = request.form['email']
         input_password = request.form['password']
-        input_confirm_password = request.form['confirm password']
 
     # if no registration info is inputted into the fields
-    if input_email.strip() == '' or input_password.strip() == '' or input_confirm_password.strip() == '':
+    if input_email.strip() == '' or input_password.strip() == '':
         error_msg = ""
         if input_email == '':
             error_msg += "Please enter a email. \n"
@@ -74,17 +73,10 @@ def register():
         if input_password == '':
             error_msg += "Please enter a password. \n"
 
-        if input_confirm_password == '':
-            error_msg += "Please confirm your password. \n"
-
         return render_template('register.html', message=error_msg)
 
     # if info is entered into fields
     else:
-        # Checks for password/confirm password match
-        if input_password != input_confirm_password:
-            return render_template('register.html', message="Passwords do not match. Please try again.")
-
         # Checks for existing email in accounts table
         var = (input_email,)
         c.execute("select email from accounts where email=?", var)
