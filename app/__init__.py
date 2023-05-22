@@ -253,7 +253,7 @@ def homes_by_zip(zip):
     }
 
     response = requests.get(
-        'https://api.gateway.attomdata.com/propertyapi/v1.0.0/property/Detail', params=params, headers=headers)
+        'https://api.gateway.attomdata.com/propertyapi/v1.0.0/assessment/detail', params=params, headers=headers)
     return response.json()
 
 
