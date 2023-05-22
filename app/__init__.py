@@ -13,7 +13,8 @@ import os
 import requests
 
 dirname = os.path.dirname(__file__)
-# attomKey = open(os.path.join(dirname, "keys/attom.txt")).read()
+attomKey = open(os.path.join(dirname, "keys/attom.txt")
+                ).read() or ""
 
 
 app = Flask(__name__)  # create Flask object
@@ -47,9 +48,9 @@ def index():
         print("hi")
         print("user is logged in as " +
               session['email'] + ". Redirecting to /")
-        return render_template('index.html', username = True)
+        return render_template('index.html', username=True)
     print("not Hi")
-    return render_template('index.html', username = False)
+    return render_template('index.html', username=False)
 
 # REGISTER
 
@@ -187,44 +188,75 @@ def logout():
 
 @app.route("/buy", methods=['GET', 'POST'])
 def buy():
+    ip_data = get_ip_data(get_ip())
+    # print(data)
+    zip = ip_data['zip']
+    print(zip)
+
+    data = homes_by_zip(zip)
+    print(data)
+    return render_template('buy.html', email=False, query=zip, data=data['property'])
+
+
+def get_ip():
+    # if the addr is 127.0.0.1 then request for the ip
+    if request.remote_addr == "127.0.0.1":
+        ip = requests.get("https://api.ipify.org").text
+    else:
+        ip = request.remote_addr
+    return ip
+
+
+def get_ip_data(ip):
+    response = requests.get(f"http://ip-api.com/json/{ip}")
+    data = response.json()
+    print(data)
+    return data
+
+
+@app.route("/search", methods=['GET', 'POST'])
+def search():
     if 'email' in session:
-        return render_template('buy.html', username = True)
-    return render_template('buy.html', username = True)
-    
+        return render_template('search.html', username=True)
+    return render_template('search.html', username=True)
 
 
 @app.route("/rent", methods=['GET', 'POST'])
 def rent():
     if 'email' in session:
-        return render_template('rent.html', username = True)
-    return render_template('rent.html', username = True)
+        return render_template('rent.html', username=True)
+    return render_template('rent.html', username=True)
+
 
 @app.route("/sell", methods=['GET', 'POST'])
 def sell():
     if 'email' in session:
-        return render_template('sell.html', username = True)
-    return render_template('sell.html', username = True)
+        return render_template('sell.html', username=True)
+    return render_template('sell.html', username=True)
 
-#proxy api routes for attom property api
-@app.route("/api/property/address", methods=['GET'])
-def address():
-    #fetch data and return json
+# proxy api routes for attom property api
+
+
+# @app.route("/api/property/address", methods=['GET'])
+def homes_by_zip(zip):
+    # fetch data and return json
     headers = {
         'Accept': 'application/json, application/json',
         'apikey': attomKey,
     }
 
     # required params
-    if 'zip' not in request.args:
-        return {'error': 'missing required parameter: zip'}
+    # if 'zip' not in request.args:
+    #     return {'error': 'missing required parameter: zip'}
 
     params = {
-        'postalcode': request.args['zip'],
+        'postalcode': zip,
         'page': '1',
-        'pagesize': request.args['pagesize'] if 'pagesize' in request.args else '100',
+        'pagesize': '100',
     }
 
-    response = requests.get('https://api.gateway.attomdata.com/propertyapi/v1.0.0/property/address', params=params, headers=headers)
+    response = requests.get(
+        'https://api.gateway.attomdata.com/propertyapi/v1.0.0/assessment/detail', params=params, headers=headers)
     return response.json()
 
 

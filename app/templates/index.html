@@ -17,8 +17,32 @@
       }
     });
   };
-
 </script>
+
+<script type='text/javascript'>
+  function loadMapScenario() {
+    Microsoft.Maps.loadModule('Microsoft.Maps.AutoSuggest', {
+      callback: onLoad,
+      errorCallback: onError
+    });
+    function onLoad() {
+      var options = { maxResults: 5 };
+      var manager = new Microsoft.Maps.AutosuggestManager(options);
+      manager.attachAutosuggest('#search_input', '#searchbar', selectedSuggestion);
+    }
+    function onError(message) {
+      console.log(message);
+    }
+    function selectedSuggestion(suggestionResult) {
+      console.log(suggestionResult);
+    }
+
+  }
+</script>
+
+<script type='text/javascript'
+  src='https://www.bing.com/api/maps/mapcontrol?key=ApoGTzsEZsZMP51WQe65HrnjXH7j1SjtRzbCW25F65Q25_5Xlb_tdZodeYlELesQ&callback=loadMapScenario'
+  async defer></script>
 
 <body>
   <header>
@@ -34,8 +58,9 @@
         <div class="d-flex justify-content-center align-items-center h-100">
           <div class="text-white">
             <h1 class="mb-3">Find it. Tour it. Own it. </h1>
-            <div class="searchbar">
-              <input class="search_input" type="text" placeholder="Enter an address, neighborhood, city, or ZIP code">
+            <div id="searchbar" class="searchbar">
+              <input id="search_input" class="search_input" type="text"
+                placeholder="Enter an address, neighborhood, city, or ZIP code">
               <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
             </div>
           </div>
