@@ -44,10 +44,12 @@ def index():
     print(request.headers)
 
     if 'email' in session:
+        print("hi")
         print("user is logged in as " +
               session['email'] + ". Redirecting to /")
-        return render_template('index.html', email = True)
-    return render_template('index.html', email = False)
+        return render_template('index.html', username = True)
+    print("not Hi")
+    return render_template('index.html', username = False)
 
 # REGISTER
 
@@ -57,7 +59,7 @@ def register():
 
     # GET
     if request.method == 'GET':
-        return render_template('register.html')
+        return redirect("/")
 
     # POST
     if request.method == 'POST':
@@ -85,7 +87,8 @@ def register():
         if not c.fetchone():
             c.execute("insert into accounts values(?, ?)",
                       (input_email, input_password))
-            return render_template('login.html')
+            session['email'] = input_email
+            return redirect("/")
         # if email is already taken
         else:
             return render_template('register.html', message="email is already taken. Please select another email.")
@@ -103,7 +106,7 @@ def login():
 
     # GET
     if request.method == "GET":
-        return render_template("login.html")
+        return redirect("/")
 
     # POST
     if request.method == 'POST':
@@ -185,22 +188,22 @@ def logout():
 @app.route("/buy", methods=['GET', 'POST'])
 def buy():
     if 'email' in session:
-        return render_template('buy.html', email = True)
-    return render_template('buy.html', email = False)
+        return render_template('buy.html', username = True)
+    return render_template('buy.html', username = True)
     
 
 
 @app.route("/rent", methods=['GET', 'POST'])
 def rent():
     if 'email' in session:
-        return render_template('rent.html', email = True)
-    return render_template('rent.html', email = False)
+        return render_template('rent.html', username = True)
+    return render_template('rent.html', username = True)
 
 @app.route("/sell", methods=['GET', 'POST'])
 def sell():
     if 'email' in session:
-        return render_template('sell.html', email = True)
-    return render_template('sell.html', email = False)
+        return render_template('sell.html', username = True)
+    return render_template('sell.html', username = True)
 
 #proxy api routes for attom property api
 @app.route("/api/property/address", methods=['GET'])
