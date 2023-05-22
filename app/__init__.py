@@ -3,14 +3,15 @@
 # Period 08
 # Dec 2023
 
-import sqlite3  # for database building
+# import sqlite3  # for database building
 from flask import Flask  # facilitate flask webserving
 from flask import render_template  # facilitate jinja templating
 from flask import request  # facilitate form submission
 from flask import session  # facilitate user sessions
-from flask import redirect, url_for  # to redirect to a different URL
+from flask import redirect, url_for, jsonify  # to redirect to a different URL
 import os
 import requests
+from db import *
 
 dirname = os.path.dirname(__file__)
 attomKey = open(os.path.join(dirname, "keys/attom.txt")
@@ -21,13 +22,21 @@ app = Flask(__name__)  # create Flask object
 # randomized string for SECRET KEY (for interacting with operating system)
 app.secret_key = os.urandom(32)
 
-DB_FILE = "tables.db"
-# open if file exists, otherwise create
-db = sqlite3.connect(DB_FILE, check_same_thread=False)
-c = db.cursor()  # facilitate db ops -- you will use cursor to trigger db events
+# DB_FILE = os.path.join(dirname, "tables.db")
+# db = sqlite3.connect(DB_FILE, check_same_thread=False)
+# c = db.cursor()
+# # open if file exists, otherwise create
+# db = sqlite3.connect(DB_FILE, check_same_thread=False)
+# c = db.cursor()  # facilitate db ops -- you will use cursor to trigger db events
 
-c.execute("create table if not exists accounts(email TEXT, password TEXT);")
-db.commit()
+# c.execute("create table if not exists accounts(email TEXT, password TEXT);")
+# db.commit()
+
+
+def render_template(template, **kwargs):
+    email = session.get('email', None)
+    print("email is " + str(email) + " in render_template_with_username")
+    return render_template(template, email=email, **kwargs)
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -47,50 +56,70 @@ def index():
     if 'email' in session:
         print("user is logged in as " +
               session['email'] + ". Redirecting to /")
-        return render_template('index.html', email=True)
-    return render_template('index.html', email=False)
+        return render_template('index.html')
+    return render_template('index.html')
 
 # REGISTER
 
 
-@app.route("/register", methods=['GET', 'POST'])
+@app.route("/register", methods=['POST'])
 def register():
-
-    # GET
-    if request.method == 'GET':
-        return render_template('register.html')
 
     # POST
     if request.method == 'POST':
         input_email = request.form['email']
         input_password = request.form['password']
+        confirm_password = request.form['confirm_password']
 
-    # if no registration info is inputted into the fields
-    if input_email.strip() == '' or input_password.strip() == '':
-        error_msg = ""
-        if input_email == '':
-            error_msg += "Please enter a email. \n"
+        response = {
+            'error': '',
+            'success': ''
+        }
+        # if no registration info is inputted into the fields
+        if input_email.strip() == '' or input_password.strip() == '' or confirm_password.strip() == '':
+            # return json response instead of rendering template
+            if input_email.strip() == '':
+                response['error'] = "Please enter a email. \n"
 
-        if input_password == '':
-            error_msg += "Please enter a password. \n"
+            if input_password.strip() == '':
+                response['error'] += "Please enter a password. \n"
 
-        return render_template('register.html', message=error_msg)
+            if confirm_password.strip() == '':
+                response['error'] += "Please confirm your password. \n"
 
-    # if info is entered into fields
-    else:
-        # Checks for existing email in accounts table
-        var = (input_email,)
-        c.execute("select email from accounts where email=?", var)
+            if input_password.strip() != confirm_password.strip():
+                response['error'] += "Passwords do not match. \n"
 
-        # if there isn't an account associated with said email then create one
-        if not c.fetchone():
-            c.execute("insert into accounts values(?, ?)",
-                      (input_email, input_password))
-            return render_template('login.html')
-        # if email is already taken
+            response['success'] = "false"
+            return jsonify(response)
+
+            # if info is entered into fields
         else:
-            return render_template('register.html', message="email is already taken. Please select another email.")
+            # Checks for existing email in accounts table
+            # var = (input_email,)
+            # c.execute("select email from accounts where email=?", var)\
 
+            if check_email(input_email):
+                response['error'] = "email is already taken. Please select another email. \n"
+                response['success'] = "false"
+                return jsonify(response)
+
+            # if email is not taken
+            else:
+                # if passwords match
+                if input_password == confirm_password:
+                    # insert into accounts table
+                    insert_account(input_email, input_password)
+                    response['success'] = "true"
+                    return jsonify(response)
+                # if passwords don't match
+                else:
+                    response['error'] = "Passwords do not match. \n"
+                    response['success'] = "false"
+                    return jsonify(response)
+    else:
+        # return status code 405 (method not allowed)
+        return 405
 # login process
 
 
@@ -112,7 +141,7 @@ def login():
         input_password = request.form['password']
 
     # Searches accounts table for user-password combination
-    c.execute("select email from accounts where email=? and password=?;",
+    c.execute("select email from users where email=? and password=?;",
               (input_email, input_password))
 
     # login_check
@@ -192,7 +221,7 @@ def buy():
 
     data = homes_by_zip(zip)
     print(data)
-    return render_template('buy.html', email=False, query=zip, data=data['property'])
+    return render_template('buy.html', query=zip, data=data['property'])
 
 
 def get_ip():
@@ -214,15 +243,15 @@ def get_ip_data(ip):
 @app.route("/search", methods=['GET', 'POST'])
 def search():
     if 'email' in session:
-        return render_template('search.html', email=True)
-    return render_template('search.html', email=False)
+        return render_template('search.html')
+    return render_template('search.html')
 
 
 @app.route("/rent", methods=['GET', 'POST'])
 def rent():
     if 'email' in session:
         return render_template('rent.html', email=True)
-    return render_template('rent.html', email=False)
+    return render_template('rent.html')
 
 
 @app.route("/sell", methods=['GET', 'POST'])
