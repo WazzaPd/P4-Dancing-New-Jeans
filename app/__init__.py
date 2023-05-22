@@ -13,7 +13,8 @@ import os
 import requests
 
 dirname = os.path.dirname(__file__)
-# attomKey = open(os.path.join(dirname, "keys/attom.txt")).read()
+attomKey = open(os.path.join(dirname, "keys/attom.txt")
+                ).read() or ""
 
 
 app = Flask(__name__)  # create Flask object
@@ -191,7 +192,7 @@ def buy():
 
     data = homes_by_zip(zip)
     print(data)
-    return render_template('buy.html', email=False)
+    return render_template('buy.html', email=False, query=zip, data=data['property'])
 
 
 def get_ip():
@@ -252,7 +253,7 @@ def homes_by_zip(zip):
     }
 
     response = requests.get(
-        'https://api.gateway.attomdata.com/propertyapi/v1.0.0/property/address', params=params, headers=headers)
+        'https://api.gateway.attomdata.com/propertyapi/v1.0.0/property/Detail', params=params, headers=headers)
     return response.json()
 
 

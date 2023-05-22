@@ -43,29 +43,29 @@
       //     }
       //   });
 
-    //   var stores = "{{ stores | safe }}"
-    //   stores = stores.replace(/'/g, '"');
-    //   stores = JSON.parse(stores);
+      var stores = "{{ stores | safe }}"
+      stores = stores.replace(/'/g, '"');
+      stores = JSON.parse(stores);
 
 
-    //   for (var i = 0; i < stores.length; i++) {
-    //     console.log(stores[i]);
-    //     var pin = new Microsoft.Maps.Pushpin(
-    //       new Microsoft.Maps.Location(stores[i].lat, stores[i].lng)
-    //     );
+      for (var i = 0; i < stores.length; i++) {
+        console.log(stores[i]);
+        var pin = new Microsoft.Maps.Pushpin(
+          new Microsoft.Maps.Location(stores[i].lat, stores[i].lng)
+        );
 
-    //     //Store some metadata with the pushpin.
-    //     pin.metadata = {
-    //       title: stores[i].name,
-    //       description: stores[i].address,
-    //     };
+        //Store some metadata with the pushpin.
+        pin.metadata = {
+          title: stores[i].name,
+          description: stores[i].address,
+        };
 
-    //     //Add a click event handler to the pushpin.
-    //     Microsoft.Maps.Events.addHandler(pin, "click", pushpinClicked);
+        //Add a click event handler to the pushpin.
+        Microsoft.Maps.Events.addHandler(pin, "click", pushpinClicked);
 
-    //     //Add pushpin to the map.
-    //     map.entities.push(pin);
-    //   }
+        //Add pushpin to the map.
+        map.entities.push(pin);
+      }
     }
 
     function pushpinClicked(e) {
@@ -87,20 +87,64 @@
 </head>
 
 <body>
-  <div class="container-fluid py-2 p-6">
-    <div class="row py-20">
+  <div class="container-fluid p-0">
+    <!-- <div class="row py-20">
       <div class="col-sm-9" style="position: sticky; ">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12096.247957251499!2d-73.78308580000001!3d40.71665185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1684342597211!5m2!1sen!2sus" width="600" height="450" style="border:0; position: sticky; top:0px; left: 0px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-    <div class="row">
-      <div class="col-sm-3">
-        
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12096.247957251499!2d-73.78308580000001!3d40.71665185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1684342597211!5m2!1sen!2sus"
+          width="600" height="450" style="border:0; position: sticky; top:0px; left: 0px;" allowfullscreen="false"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
-      <div class="col-sm-9">
-        <div id="myMap" style="position: relative"></div>
+      <div class="row">
+        <div class="col-sm-3">
+
+        </div>
+        <div class="col-sm-9">
+          <div id="myMap" style="position: relative"></div>
+        </div>
+      </div>
+    </div> -->
+    <div class="row" style="height: 100%;">
+      <div class="col-7">
+        <div id="myMap" style="position: relative; height: 92vh;"></div>
+      </div>
+      <div class="col-5" style="position: absolute;
+      right: 0;
+      height: 100%;
+      overflow-y: scroll;">
+        <h4 style="margin-top: 20px;">
+          {{ query }} Real Estate and Homes for Sale
+        </h4>
+
+        <div class="row">
+          {% for house in data %}
+          <!-- <div class="card m-3 col-sm-5" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{{ house.image }}" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ house.address.oneLine }}</h5>
+                  <p class="card-text">{{ house.description }}</p>
+                  <p class="card-text"><small class="text-muted">{{ house.price }}</small></p>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="card m-3 col-sm-5" style="max-width: 540px;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{ house.address.oneLine }}</h5>
+              <p class="card-text">{{house.summary.propclass}} for sale</p>
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+          </div>
+          {% endfor %}
+        </div>
       </div>
     </div>
-  </div>
 </body>
 
 </html>
