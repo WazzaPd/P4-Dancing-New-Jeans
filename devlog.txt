@@ -145,3 +145,7 @@ JosephW -- 2023-05-16 13:50
 - Recommended to focus on backend
 - More white by setting an background image behind background image to white, make it opaque.
 - Serching a place to live by SAT score/crimerate. Filter!
+
+DavidC -- 2023-05-21 12:23
+- Added new api calls to ATTOM to acquire more details about properties within a zip code
+- More custom css to emulate the search page of zillow
