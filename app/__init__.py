@@ -217,22 +217,22 @@ def get_ip_data(ip):
 @app.route("/search", methods=['GET', 'POST'])
 def search():
     if 'email' in session:
-        return render_template('search.html', username=True)
-    return render_template('search.html', username=True)
-
+        return render_template('buy.html', email = True)
+    return render_template('buy.html', email = False)
+    
 
 @app.route("/rent", methods=['GET', 'POST'])
 def rent():
     if 'email' in session:
-        return render_template('rent.html', username=True)
-    return render_template('rent.html', username=True)
+        return render_template('rent.html', email = True)
+    return render_template('rent.html', email = False)
 
 
 @app.route("/sell", methods=['GET', 'POST'])
 def sell():
     if 'email' in session:
-        return render_template('sell.html', username=True)
-    return render_template('sell.html', username=True)
+        return render_template('sell.html', email = True)
+    return render_template('sell.html', email = False)
 
 # proxy api routes for attom property api
 
