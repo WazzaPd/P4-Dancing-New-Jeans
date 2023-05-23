@@ -80,7 +80,7 @@ def register():
         if input_password == '':
             error_msg += "Please enter a password. \n"
 
-        return render_template('register.html', message=error_msg)
+        return redirect("/")
 
     # if info is entered into fields
     else:
@@ -96,7 +96,7 @@ def register():
             return redirect("/")
         # if email is already taken
         else:
-            return render_template('register.html', message="email is already taken. Please select another email.")
+            return redirect("/")
 
 # login process
 
@@ -152,10 +152,7 @@ def login():
             error_msg += "Password is incorrect or not found. \n"
 
         error_msg += "Please try again."
-        return render_template('login.html', message=error_msg)
-
-# logout and redirect to login page
-
+        return redirect("/")
 
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
@@ -163,31 +160,6 @@ def logout():
     session.pop('email', None)
     print("user has logged out. Redirecting to /login")
     return redirect("/")
-
-# @app.route("/auth", methods=['GET', 'POST'])
-# def authenticate():
-#     print("\n\n\n")
-#     print("***DIAG: this Flask obj ***")
-#     print(app)
-#     print("***DIAG: request obj ***")
-#     print(request)
-#     print("***DIAG: request.args ***")
-#     print(request.form)  # displays entered info as dict
-#     print("***DIAG: request.args['email']  ***")
-#     print(request.form['email'])
-#     print("***DIAG: request.headers ***")
-#     # metadata for the server about request+machine requesting
-#     print(request.headers)
-#     return f"Waaaa hooo HAAAH {request.form['email']}"  # response to a form submission
-
-
-# @app.route("/index", methods=['GET', 'POST'])
-# def main():
-#     if 'email' in session:
-#         return render_template('index.html')
-#     else:
-#         print("user is not logged in. Redirecting to /login")
-#         return redirect("/login")
 
 
 @app.route("/buy", methods=['GET', 'POST'])
