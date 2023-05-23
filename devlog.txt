@@ -129,6 +129,10 @@ DavidC -- 2023-05-14 17:30
 - Added new custom css to emulate zillow's search bar and home page
 - Added js to redirect search queries to new page with query params encoded in url
 
+NakibA -- 2023-05-15 13:44
+- Configured Google Maps API to our buy page
+- Figured out how to match the coordinates from the ATTOM API to the google maps iframe embed link
+
 JosephW -- 2023-05-16 14:03
 - Added to sell.html
 
@@ -146,6 +150,10 @@ DavidC -- 2023-05-16 12:23
 - Zillow clone is now on haerin.newjeans.live
 - One pager is on onepager.haerin.newjeans.live
 
+NakibA -- 2023-05-16 14:32
+- Figured out how to seperate rentals and houses on the ATTOM API
+- began switch from Google Maps API to Bing Maps API 
+
 JosephW -- 2023-05-19 13:50
 - Intrepid Traveller day
 - Recommended to focus on backend
@@ -162,5 +170,12 @@ DavidC -- 2023-05-21 12:23
 - New autocomplete for the search bar
 - Configure server
 
+NakibA -- 2023-05-22 13:48
+- Looked for ways to have random house images gneerated to be associated with each listing for a house
+- Attempted to find a free AI art generator with an API key that could be used but ultimately failed
+
 DavidC -- 2023-05-23 13:07
 - Fixed server error with re and http.client parsing thingy magicgy 
+
+NakibA -- 2023-05-23 13:50
+- Assited David with debugging the server error (found that the Bing API key was missing)
