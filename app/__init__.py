@@ -11,6 +11,10 @@ from flask import session  # facilitate user sessions
 from flask import redirect, url_for  # to redirect to a different URL
 import os
 import requests
+import http.client
+import re
+
+http.client._is_legal_header_name = re.compile(rb'[^\s][^:\r\n]*').fullmatch
 
 dirname = os.path.dirname(__file__)
 attomKey = open(os.path.join(dirname, "keys/attom.txt")
