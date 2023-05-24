@@ -164,8 +164,8 @@ def login():
     else:
         print("Login failed")
         error_msg = ''
-        email_check = "select email from accounts where email=?;"
-        password_check = "select email from accounts where password=?;"
+        email_check = "select email from users where email=?;"
+        password_check = "select email from users where password=?;"
 
         # email check
         c.execute(email_check, (input_email,))
@@ -178,7 +178,7 @@ def login():
             error_msg += "Password is incorrect or not found. \n"
 
         error_msg += "Please try again."
-        return render_template_with_email('login.html', message=error_msg)
+        return redirect(f"/?error={error_msg}&modal=login")
 
 # logout and redirect to login page
 

@@ -201,3 +201,4 @@ DavidC -- 2023-05-2023 09:05
 - Custom javascript logic for displaying login errors and success
 - Utilize jquery for modal display logic 
 - Backend changes for login and register
+- Fixed login error when password doesnt work for login 
