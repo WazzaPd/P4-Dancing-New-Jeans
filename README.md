@@ -7,7 +7,7 @@
 
 ### Project Description:
 
-  Our project is a clone of the popular house-hunting app Zillow. We will use publicly available data regarding houses and apartments and we will create a platform that simulates the buying/selling of these properties.
+  Our project is a clone of the popular house-hunting app Zillow. We will use publicly available data regarding houses and apartments and we will create a platform that simulates the buying/~~selling~~ of these properties.
   
 ### API Key Cards:
 1. Bing Api: https://www.microsoft.com/en-us/maps/create-a-bing-maps-key
