@@ -187,3 +187,6 @@ NakibA -- 2023-05-24 00:36
 
 DavidC -- 2023-05-23 01:08
 - Added new function to generate pixel art of houses, apartments, etc
+- Encode url params from autocompleete to be used in api call 
+- This allows for dynamic search map zoom and locations to be displayed on the map
+- Added js call for bing maps to center map on search query and display pins for each property

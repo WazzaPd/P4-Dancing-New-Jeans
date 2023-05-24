@@ -11,6 +11,18 @@
     function GetMap() {
       map = new Microsoft.Maps.Map("#myMap", {});
 
+      // check url for query string longitude and latitude and if they exist, use them to center the map
+      var urlParams = new URLSearchParams(window.location.search);
+      var lat = urlParams.get("latitude");
+      var lng = urlParams.get("longitude");
+
+      if (lat && lng) {
+        map.setView({
+          center: new Microsoft.Maps.Location(lat, lng),
+          zoom: 15,
+        });
+      }
+
       //Create an infobox at the center of the map but don't show it.
       infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
         visible: false,
@@ -140,7 +152,7 @@
 
           <div class="card m-3 col-sm-5" style="max-width: 540px;">
             <img src='data:image/png;base64, 
-              {{ pixelart[loop.index] }}
+              {{ pixelart[loop.index0] }}
               ' class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{ house.address.oneLine }}</h5>

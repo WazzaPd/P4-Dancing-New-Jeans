@@ -33,9 +33,27 @@
     function onError(message) {
       console.log(message);
     }
+
+    // recursively the object and encode the values to be used in the url
+    function encodeGetParams(obj) {
+      const params = [];
+      Object.keys(obj).forEach((key) => {
+        if (typeof obj[key] === 'object') {
+          params.push(encodeGetParams(obj[key]));
+        } else {
+          params.push(`${key}=${encodeURIComponent(obj[key])}`);
+        }
+      });
+      return params.join('&');
+    }
+
+
     function selectedSuggestion(suggestionResult) {
       console.log(suggestionResult);
+      console.log(encodeGetParams(suggestionResult))
+      window.location.href = `/search?${encodeGetParams(suggestionResult)}`;
     }
+
 
   }
 </script>

@@ -252,9 +252,16 @@ def get_ip_data(ip):
 
 @ app.route("/search", methods=['GET', 'POST'])
 def search():
-    if 'email' in session:
-        return render_template_with_email('search.html')
-    return render_template_with_email('search.html')
+    # print all the url params in kv pairs
+    for key, value in request.args.items():
+        print(f"{key}: {value}")
+
+    zip = request.args['postalCode']
+    data = homes_by_zip(zip)
+    print(data)
+    # if 'email' in session:
+    #     return render_template_with_email('search.html')
+    return render_template_with_email('buy.html', query=zip, data=data['property'], pixelart=gen_house_buffers(len(data['property'])))
 
 
 @ app.route("/rent", methods=['GET', 'POST'])
