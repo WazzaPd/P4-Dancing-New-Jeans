@@ -190,3 +190,7 @@ DavidC -- 2023-05-23 01:08
 - Encode url params from autocompleete to be used in api call 
 - This allows for dynamic search map zoom and locations to be displayed on the map
 - Added js call for bing maps to center map on search query and display pins for each property
+- Added new api proxy calls for details
+- modals should now be dynamically loading data from the api
+- use jquery to dynamically load data into the modal
+- use regex to select all the elements with the same class name and then iterate through them to add the event listener
