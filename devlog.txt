@@ -194,3 +194,6 @@ DavidC -- 2023-05-23 01:08
 - modals should now be dynamically loading data from the api
 - use jquery to dynamically load data into the modal
 - use regex to select all the elements with the same class name and then iterate through them to add the event listener
+
+DavidC -- 2023-05-2023 09:05
+- Fixed glitchy home page carousel
