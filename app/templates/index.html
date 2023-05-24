@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block main %}
 
-<link rel="stylesheet" href="/static/css/index.css" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 
 <script>
   window.onload = function () {
@@ -109,6 +109,8 @@
 
           <div class="card" style="width: 20rem; display: inline-block;margin:1rem;">
             <img class="card-img-top" src="https://photos.zillowstatic.com/fp/44199207d651a9413e0e3396dc2b19a6-p_e.jpg" alt="Card image cap">
+            <span class="badge rounded-pill bg-secondary description-badge">A bussin building for real</span>
+
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
@@ -119,6 +121,8 @@
 
           <div class="card" style="width: 20rem; display: inline-block;margin:1rem;">
             <img class="card-img-top" src="https://photos.zillowstatic.com/fp/da18fd03f56398aab0aa5a0eb31881e3-p_e.jpg" alt="Card image cap">
+            <span class="badge rounded-pill bg-secondary description-badge">yo i'm mad cheap buy me 🥺🥺</span>
+
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
@@ -129,6 +133,8 @@
 
           <div class="card" style="width: 20rem; display: inline-block;margin:1rem;">
             <img class="card-img-top" src="https://photos.zillowstatic.com/fp/d3e950790300f7404f3503b89d09b9cb-p_e.jpg" alt="Card image cap">
+            <span class="badge rounded-pill bg-secondary description-badge">buy me if you tryna be vintage or something</span>
+
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
@@ -139,6 +145,8 @@
 
           <div class="card" style="width: 20rem; display: inline-block;margin:1rem;">
             <img class="card-img-top" src="https://photos.zillowstatic.com/fp/1a3124fb691f759535672912bdfb7839-p_e.jpg" alt="Card image cap">
+            <span class="badge rounded-pill bg-secondary description-badge">Super fire apartment you should buy me</span>
+
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
