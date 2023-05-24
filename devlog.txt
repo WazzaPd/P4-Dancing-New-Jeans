@@ -150,3 +150,6 @@ DavidC -- 2023-05-21 12:23
 - Added new api calls to ATTOM to acquire more details about properties within a zip code
 - More custom css to emulate the search page of zillow
 - New autocomplete for the search bar
+
+DavidC -- 2023-05-23 01:08
+- Added new function to generate pixel art of houses, apartments, etc

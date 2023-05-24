@@ -12,6 +12,7 @@ from flask import redirect, url_for, jsonify  # to redirect to a different URL
 import os
 import requests
 from db import *
+from art import *
 
 dirname = os.path.dirname(__file__)
 attomKey = open(os.path.join(dirname, "keys/attom.txt")
@@ -33,10 +34,10 @@ app.secret_key = os.urandom(32)
 # db.commit()
 
 
-def render_template(template, **kwargs):
-    email = session.get('email', None)
-    print("email is " + str(email) + " in render_template_with_username")
-    return render_template(template, email=email, **kwargs)
+def render_template_with_email(template, **kwargs):
+    emailStr = session.get('email', None)
+    print("email is " + str(emailStr) + " in render_template_with_email")
+    return render_template(template, email=emailStr, **kwargs)
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -53,11 +54,7 @@ def index():
     print("***DIAG: request.headers ***")
     print(request.headers)
 
-    if 'email' in session:
-        print("user is logged in as " +
-              session['email'] + ". Redirecting to /")
-        return render_template('index.html')
-    return render_template('index.html')
+    return render_template_with_email('index.html')
 
 # REGISTER
 
@@ -133,7 +130,7 @@ def login():
 
     # GET
     if request.method == "GET":
-        return render_template("login.html")
+        return render_template_with_email("login.html")
 
     # POST
     if request.method == 'POST':
@@ -174,7 +171,7 @@ def login():
             error_msg += "Password is incorrect or not found. \n"
 
         error_msg += "Please try again."
-        return render_template('login.html', message=error_msg)
+        return render_template_with_email('login.html', message=error_msg)
 
 # logout and redirect to login page
 
@@ -206,10 +203,18 @@ def logout():
 # @app.route("/index", methods=['GET', 'POST'])
 # def main():
 #     if 'email' in session:
-#         return render_template('index.html')
+#         return render_template_with_email('index.html')
 #     else:
 #         print("user is not logged in. Redirecting to /login")
 #         return redirect("/login")
+
+# function to return a specified amount of randomly generated image buffers
+def gen_house_buffers(amount):
+    buffers = []
+    # call generate_house to get a random house image buffer
+    for i in range(amount):
+        buffers.append(generate_house())
+    return buffers
 
 
 @app.route("/buy", methods=['GET', 'POST'])
@@ -221,7 +226,8 @@ def buy():
 
     data = homes_by_zip(zip)
     print(data)
-    return render_template('buy.html', query=zip, data=data['property'])
+
+    return render_template_with_email('buy.html', query=zip, data=data['property'], pixelart=gen_house_buffers(len(data['property'])))
 
 
 def get_ip():
@@ -240,25 +246,25 @@ def get_ip_data(ip):
     return data
 
 
-@app.route("/search", methods=['GET', 'POST'])
+@ app.route("/search", methods=['GET', 'POST'])
 def search():
     if 'email' in session:
-        return render_template('search.html')
-    return render_template('search.html')
+        return render_template_with_email('search.html')
+    return render_template_with_email('search.html')
 
 
-@app.route("/rent", methods=['GET', 'POST'])
+@ app.route("/rent", methods=['GET', 'POST'])
 def rent():
     if 'email' in session:
-        return render_template('rent.html', email=True)
-    return render_template('rent.html')
+        return render_template_with_email('rent.html')
+    return render_template_with_email('rent.html')
 
 
-@app.route("/sell", methods=['GET', 'POST'])
+@ app.route("/sell", methods=['GET', 'POST'])
 def sell():
     if 'email' in session:
-        return render_template('sell.html', email=True)
-    return render_template('sell.html', email=False)
+        return render_template_with_email('sell.html')
+    return render_template_with_email('sell.html')
 
 # proxy api routes for attom property api
 

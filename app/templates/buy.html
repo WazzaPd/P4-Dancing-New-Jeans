@@ -139,7 +139,9 @@
           </div> -->
 
           <div class="card m-3 col-sm-5" style="max-width: 540px;">
-            <img src="..." class="card-img-top" alt="...">
+            <img src='data:image/png;base64, 
+              {{ pixelart[loop.index] }}
+              ' class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{ house.address.oneLine }}</h5>
               <p class="card-text">{{house.summary.propclass}} for sale</p>
