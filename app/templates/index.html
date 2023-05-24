@@ -19,6 +19,83 @@
   };
 </script>
 
+
+<script defer>
+  window.onload = function () {
+    // check if there is param in the url and open modal accordingly 
+    // display error message in the param and be sure to sanitize it
+
+    const urlParams = new URLSearchParams(window.location.search);
+    console.log(urlParams);
+    let modal = urlParams.get('modal');
+    let error = urlParams.get('error');
+    let success = urlParams.get('success');
+
+    if (modal === 'login') {
+      $('#loginModal').modal('show');
+    } else if (modal === 'register') {
+      $('#loginModal').modal('show');
+      document.querySelector("[href='#register-pane']").click();
+    }
+
+    if (error) {
+      // const registerError = document.querySelector("#registerError");
+      error = error.replace(/</g, "&lt;").replace(/>/g, "&gt;"); // sanitize idk if this is enough
+      // registerError.innerHTML = error;
+
+      if (modal === 'login') {
+        $('#loginError').text(error);
+      } else if (modal === 'register') {
+        $('#registerError').text(error);
+      }
+    }
+
+    if (success) {
+      success = success.replace(/</g, "&lt;").replace(/>/g, "&gt;"); 
+      // registerSuccess.innerHTML = success;
+
+      if (modal === 'login') {
+        $('#loginSuccess').text(success);
+      } else if (modal === 'register') {
+        $('#registerSuccess').text(success);
+      }
+    }
+
+
+    // function handleRegister() {
+    //     const registerForm = document.querySelector("#registerForm");
+    //     const registerButton = document.querySelector("#registerButton");
+    //     const registerError = document.querySelector("#registerError");
+    //     const registerSuccess = document.querySelector("#registerSuccess");
+
+    //     registerButton.addEventListener("click", () => {
+    //         const formData = new FormData(registerForm);
+    //         const registerData = Object.fromEntries(formData.entries());
+
+    //         fetch("/register", {
+    //             method: "POST",
+    //             body: JSON.stringify(registerData),
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //         })
+    //             .then((res) => res.json())
+    //             .then((data) => {
+    //                 if (data.error) {
+    //                     registerError.innerHTML = data.error;
+    //                     registerSuccess.innerHTML = "";
+    //                 } else {
+    //                     registerSuccess.innerHTML = data.success;
+    //                     registerError.innerHTML = "";
+    //                 }
+    //             });
+    //     });
+    // }
+
+    // handleRegister()
+  };
+</script>
+
 <script type='text/javascript'>
   function loadMapScenario() {
     Microsoft.Maps.loadModule('Microsoft.Maps.AutoSuggest', {
@@ -108,7 +185,8 @@
         <div class="carousel-item active">
 
           <div class="card" style="width: 20rem; display: inline-block;margin:1rem;">
-            <img class="card-img-top" src="https://photos.zillowstatic.com/fp/44199207d651a9413e0e3396dc2b19a6-p_e.jpg" alt="Card image cap">
+            <img class="card-img-top" src="https://photos.zillowstatic.com/fp/44199207d651a9413e0e3396dc2b19a6-p_e.jpg"
+              alt="Card image cap">
             <span class="badge rounded-pill bg-secondary description-badge">A bussin building for real</span>
 
             <div class="card-body">
@@ -120,7 +198,8 @@
           </div>
 
           <div class="card" style="width: 20rem; display: inline-block;margin:1rem;">
-            <img class="card-img-top" src="https://photos.zillowstatic.com/fp/da18fd03f56398aab0aa5a0eb31881e3-p_e.jpg" alt="Card image cap">
+            <img class="card-img-top" src="https://photos.zillowstatic.com/fp/da18fd03f56398aab0aa5a0eb31881e3-p_e.jpg"
+              alt="Card image cap">
             <span class="badge rounded-pill bg-secondary description-badge">yo i'm mad cheap buy me 🥺🥺</span>
 
             <div class="card-body">
@@ -132,8 +211,10 @@
           </div>
 
           <div class="card" style="width: 20rem; display: inline-block;margin:1rem;">
-            <img class="card-img-top" src="https://photos.zillowstatic.com/fp/d3e950790300f7404f3503b89d09b9cb-p_e.jpg" alt="Card image cap">
-            <span class="badge rounded-pill bg-secondary description-badge">buy me if you tryna be vintage or something</span>
+            <img class="card-img-top" src="https://photos.zillowstatic.com/fp/d3e950790300f7404f3503b89d09b9cb-p_e.jpg"
+              alt="Card image cap">
+            <span class="badge rounded-pill bg-secondary description-badge">buy me if you tryna be vintage or
+              something</span>
 
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
@@ -144,8 +225,10 @@
           </div>
 
           <div class="card" style="width: 20rem; display: inline-block;margin:1rem;">
-            <img class="card-img-top" src="https://photos.zillowstatic.com/fp/1a3124fb691f759535672912bdfb7839-p_e.jpg" alt="Card image cap">
-            <span class="badge rounded-pill bg-secondary description-badge">Super fire apartment you should buy me</span>
+            <img class="card-img-top" src="https://photos.zillowstatic.com/fp/1a3124fb691f759535672912bdfb7839-p_e.jpg"
+              alt="Card image cap">
+            <span class="badge rounded-pill bg-secondary description-badge">Super fire apartment you should buy
+              me</span>
 
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
@@ -159,14 +242,14 @@
         </div>
 
       </div>
-      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <!-- <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
       <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
-      </a>
+      </a> -->
     </div>
 
   </div>

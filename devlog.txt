@@ -198,3 +198,6 @@ DavidC -- 2023-05-23 01:08
 DavidC -- 2023-05-2023 09:05
 - Fixed glitchy home page carousel
 - Home page touch ups for trending homes
+- Custom javascript logic for displaying login errors and success
+- Utilize jquery for modal display logic 
+- Backend changes for login and register

@@ -8,43 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
     <script src="https://kit.fontawesome.com/339055163d.js" crossorigin="anonymous"></script>
-
-    <script>
-        window.onload = function () {
-            function handleRegister() {
-                const registerForm = document.querySelector("#registerForm");
-                const registerButton = document.querySelector("#registerButton");
-                const registerError = document.querySelector("#registerError");
-                const registerSuccess = document.querySelector("#registerSuccess");
-
-                registerButton.addEventListener("click", () => {
-                    const formData = new FormData(registerForm);
-                    const registerData = Object.fromEntries(formData.entries());
-
-                    fetch("/register", {
-                        method: "POST",
-                        body: JSON.stringify(registerData),
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                    })
-                        .then((res) => res.json())
-                        .then((data) => {
-                            if (data.error) {
-                                registerError.innerHTML = data.error;
-                                registerSuccess.innerHTML = "";
-                            } else {
-                                registerSuccess.innerHTML = data.success;
-                                registerError.innerHTML = "";
-                            }
-                        });
-                });
-            }
-
-            handleRegister();
-        };
-    </script>
 </head>
+
 
 <body>
     <!-- Start Navbar -->
@@ -117,11 +82,11 @@
 
                                             <ul class="nav nav-tabs" id="myTab">
                                                 <li class="nav-item">
-                                                    <a href="#home" class="nav-link active"
+                                                    <a href="#login-pane" class="nav-link active"
                                                         data-bs-toggle="tab">Login</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a href="#messages" class="nav-link"
+                                                    <a href="#register-pane" class="nav-link"
                                                         data-bs-toggle="tab">Register</a>
                                                 </li>
                                             </ul>
@@ -130,7 +95,7 @@
 
                                         <div class="card-body pb-4">
                                             <div class="tab-content">
-                                                <div class="tab-pane fade show active" id="home">
+                                                <div class="tab-pane fade show active" id="login-pane">
                                                     <form class="px-2" action="{{ url_for('login') }}" method="POST">
                                                         <div class="form-group">
                                                             <label for="inputEmail"
@@ -146,12 +111,22 @@
                                                                 id="inputPassword" placeholder="Password"
                                                                 name="password">
                                                         </div>
+                                                        <span id="loginError" name="loginError"
+                                                        class="loginError"
+                                                        style="color: red; font-size: 16px; font-weight: bold;"
+                                                        ></span>
+
+                                                        <span id="loginSuccess" name="loginSuccess"
+                                                        class="loginSuccess"
+                                                        style="color: green; font-size: 16px; font-weight: bold;"
+                                                        ></span>
+
                                                         <button type="submit" class="btn btn-primary btn-block"
                                                             style="margin-top: 5%; width: 100%;">Sign In</button>
                                                     </form>
                                                 </div>
-                                                <div class="tab-pane fade" id="messages">
-                                                    <form class="px-2" id="registerForm">
+                                                <div class="tab-pane fade" id="register-pane">
+                                                    <form class="px-2" id="registerForm" action="{{ url_for('register') }}" method="POST">
                                                         <div class="form-group">
                                                             <label for="inputEmail"
                                                                 class="font-weight-bold">Email</label>
@@ -182,10 +157,14 @@
                                                             uppercase letter</ul>
 
                                                         <span id="registerError" name="registerError"
-                                                            class="registerError"></span>
+                                                            class="registerError"
+                                                            style="color: red; font-size: 16px; font-weight: bold;"
+                                                            ></span>
 
                                                         <span id="registerSuccess" name="registerSuccess"
-                                                            class="registerSuccess"></span>
+                                                            class="registerSuccess"
+                                                            style="color: green; font-size: 16px; font-weight: bold;"
+                                                            ></span>
 
                                                         <button id="registerButton" type="submit"
                                                             class="btn btn-primary btn-block"

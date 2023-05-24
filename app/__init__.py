@@ -92,7 +92,9 @@ def register():
                 response['error'] += "Passwords do not match. \n"
 
             response['success'] = "false"
-            return jsonify(response)
+            # return render_template_with_email('register.html', message=response['error'])
+            # return home page with url params
+            return redirect(f"/?error={response['error']}&modal=register")
 
             # if info is entered into fields
         else:
@@ -103,7 +105,7 @@ def register():
             if check_email(input_email):
                 response['error'] = "email is already taken. Please select another email. \n"
                 response['success'] = "false"
-                return jsonify(response)
+                return redirect(f"/?error={response['error']}&modal=register")
 
             # if email is not taken
             else:
@@ -112,12 +114,13 @@ def register():
                     # insert into accounts table
                     insert_account(input_email, input_password)
                     response['success'] = "true"
-                    return jsonify(response)
+                    return redirect(f"/?success=Successfully registered!&modal=register")
                 # if passwords don't match
                 else:
                     response['error'] = "Passwords do not match. \n"
                     response['success'] = "false"
-                    return jsonify(response)
+                    print("Passwords do not match")
+                    return redirect(f"/?error={response['error']}&modal=register")
     else:
         # return status code 405 (method not allowed)
         return 405
