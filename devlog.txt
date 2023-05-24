@@ -168,8 +168,6 @@ DavidC -- 2023-05-21 12:23
 - Added new api calls to ATTOM to acquire more details about properties within a zip code
 - More custom css to emulate the search page of zillow
 - New autocomplete for the search bar
-
-DavidC -- 2023-05-22 12:08
 - Configure server
 
 NakibA -- 2023-05-22 13:48
@@ -181,6 +179,11 @@ DavidC -- 2023-05-23 13:07
 
 NakibA -- 2023-05-23 13:50
 - Assited David with debugging the server error (found that the Bing API key was missing)
+
+NakibA -- 2023-05-24 00:36
+- Wrote out API card for ATTOM API
+- Replaced droplet API key with new API key in order to refresh usage
+- Made design doc up to date with project updates
 
 DavidC -- 2023-05-23 01:08
 - Added new function to generate pixel art of houses, apartments, etc
