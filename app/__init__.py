@@ -295,7 +295,7 @@ def homes_by_zip(zip):
     params = {
         'postalcode': zip,
         'page': '1',
-        'pagesize': '100',
+        'pagesize': '30',
     }
 
     response = requests.get(
