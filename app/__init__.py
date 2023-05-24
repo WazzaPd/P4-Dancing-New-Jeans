@@ -94,6 +94,9 @@ def register():
             response['success'] = "false"
             # return render_template_with_email('register.html', message=response['error'])
             # return home page with url params
+            # strip of new line character
+            response['error'] = response['error'].strip('\n')
+
             return redirect(f"/?error={response['error']}&modal=register")
 
             # if info is entered into fields
@@ -105,6 +108,7 @@ def register():
             if check_email(input_email):
                 response['error'] = "email is already taken. Please select another email. \n"
                 response['success'] = "false"
+                response['error'] = response['error'].strip('\n')
                 return redirect(f"/?error={response['error']}&modal=register")
 
             # if email is not taken
@@ -120,6 +124,7 @@ def register():
                     response['error'] = "Passwords do not match. \n"
                     response['success'] = "false"
                     print("Passwords do not match")
+                    response['error'] = response['error'].strip('\n')
                     return redirect(f"/?error={response['error']}&modal=register")
     else:
         # return status code 405 (method not allowed)
@@ -178,6 +183,7 @@ def login():
             error_msg += "Password is incorrect or not found. \n"
 
         error_msg += "Please try again."
+        response['error'] = response['error'].strip('\n')
         return redirect(f"/?error={error_msg}&modal=login")
 
 # logout and redirect to login page
