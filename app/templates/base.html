@@ -38,7 +38,16 @@
             </div>
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul class="navbar-nav ms-auto">
-                    {% if username %}
+                    {% if email %}
+                    <li class="nav-item me-3">
+                        <a href="/profile" class="nav-link">Profile</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <span class="nav-link">Email:
+                            {{ email }}
+                        </span>
+                    </li>
+
                     <li class="nav-item me-3">
                         <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
                     </li>
@@ -111,22 +120,19 @@
                                                                 id="inputPassword" placeholder="Password"
                                                                 name="password">
                                                         </div>
-                                                        <span id="loginError" name="loginError"
-                                                        class="loginError"
-                                                        style="color: red; font-size: 16px; font-weight: bold;"
-                                                        ></span>
+                                                        <span id="loginError" name="loginError" class="loginError"
+                                                            style="color: red; font-size: 16px; font-weight: bold;"></span>
 
-                                                        <span id="loginSuccess" name="loginSuccess"
-                                                        class="loginSuccess"
-                                                        style="color: green; font-size: 16px; font-weight: bold;"
-                                                        ></span>
+                                                        <span id="loginSuccess" name="loginSuccess" class="loginSuccess"
+                                                            style="color: green; font-size: 16px; font-weight: bold;"></span>
 
                                                         <button type="submit" class="btn btn-primary btn-block"
                                                             style="margin-top: 5%; width: 100%;">Sign In</button>
                                                     </form>
                                                 </div>
                                                 <div class="tab-pane fade" id="register-pane">
-                                                    <form class="px-2" id="registerForm" action="{{ url_for('register') }}" method="POST">
+                                                    <form class="px-2" id="registerForm"
+                                                        action="{{ url_for('register') }}" method="POST">
                                                         <div class="form-group">
                                                             <label for="inputEmail"
                                                                 class="font-weight-bold">Email</label>
@@ -158,13 +164,11 @@
 
                                                         <span id="registerError" name="registerError"
                                                             class="registerError"
-                                                            style="color: red; font-size: 16px; font-weight: bold;"
-                                                            ></span>
+                                                            style="color: red; font-size: 16px; font-weight: bold;"></span>
 
                                                         <span id="registerSuccess" name="registerSuccess"
                                                             class="registerSuccess"
-                                                            style="color: green; font-size: 16px; font-weight: bold;"
-                                                            ></span>
+                                                            style="color: green; font-size: 16px; font-weight: bold;"></span>
 
                                                         <button id="registerButton" type="submit"
                                                             class="btn btn-primary btn-block"
