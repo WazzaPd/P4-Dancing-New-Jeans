@@ -248,7 +248,7 @@ def buy():
     data = homes_by_zip(zip)
     # print(data)
 
-    return render_template_with_email('buy.html', query=zip, data=data['property'], pixelart=gen_house_buffers(len(data['property'])))
+    return render_template_with_email('buy.html', query=zip, data=data['property'], latitude = ip_data['lat'], longitude = ip_data['lon'], pixelart=gen_house_buffers(len(data['property'])))
 
 
 def get_ip():

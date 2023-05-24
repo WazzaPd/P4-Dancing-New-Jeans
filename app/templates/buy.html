@@ -12,8 +12,8 @@
       map = new Microsoft.Maps.Map("#myMap", {});
 
       var urlParams = new URLSearchParams(window.location.search);
-      var lat = urlParams.get("latitude");
-      var lng = urlParams.get("longitude");
+      var lat = urlParams.get("latitude") || `{{ latitude }}`;
+      var lng = urlParams.get("longitude") || `{{ longitude }}`;
 
       if (lat && lng) {
         map.setView({

@@ -205,3 +205,7 @@ DavidC -- 2023-05-23 09:05
 
 JosephW -- 2023-05-24 12:28
 - Update Readme
+
+DavidC -- 2023-05-24 13:01
+- Fixed random centering for entering buy page from the navbar instead of the search bar
+- Added conditional for url params or flask-passed vars
