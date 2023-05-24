@@ -11,7 +11,7 @@ from flask import session  # facilitate user sessions
 from flask import redirect, url_for, jsonify  # to redirect to a different URL
 import os
 import requests
-from db import check_email, insert_account
+from database import *
 from art import *
 
 dirname = os.path.dirname(__file__)
