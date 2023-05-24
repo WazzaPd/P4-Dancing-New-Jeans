@@ -55,8 +55,6 @@
       //   });
 
       var houses = `{{ data | safe }}`
-      // deal with quotes in json
-
 
       houses = houses.replace(/'/g, '"');
       houses = JSON.parse(houses);
@@ -112,10 +110,11 @@
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       }
 
-      let houses = document.querySelectorAll("[id^='house-']");
+      let housesElems = document.querySelectorAll("[id^='house-']");
       var houseInfo = "{{ data | safe }}";
       houseInfo = houseInfo.replace(/'/g, '"');
-
+      houseInfo = JSON.parse(houseInfo);
+      console.log("houseInfo:")
       console.log(houseInfo);
 
       // let pixelart = "{{ pixelart | safe }}"
@@ -124,18 +123,24 @@
 
       // console.log(pixelart);
 
-      for (var i = 0; i < houses.length; i++) {
+      for (var i = 0; i < housesElems.length; i++) {
         $(`#house-${i}`).click(function () {
           // show modal on click and populate with house data
           $("#modal").modal("show");
           var houseId = this.id.split("-")[1];
-          var house = houses[houseId];
-          houseInfo = JSON.parse(houseInfo)[houseId];
+          console.log(houseId);
+          var houseInfo1 = houseInfo[houseId];
+          // houseInfo1 = house[houseId];
+          console.log(houseInfo1)
 
           // populate modal with house info
-          $("#modal-title").text(`$${formatNumberCommas(houseInfo.assessment.market.mktttlvalue)}`);
+          if (houseInfo1.assessment.market?.mktttlvalue) {
+            $("#modal-title").text(`$${formatNumberCommas(houseInfo1.assessment.market.mktttlvalue)}`);
+          } else {
+            $("#modal-title").text("No price available");
+          }
           $("#property-address").text(
-            `${houseInfo.address.oneLine}`
+            `${houseInfo1.address.oneLine}`
           );
 
           $("#property-image").attr("src", document.getElementById(`image-${houseId}`).src);

@@ -246,7 +246,7 @@ def buy():
     print(zip)
 
     data = homes_by_zip(zip)
-    print(data)
+    # print(data)
 
     return render_template_with_email('buy.html', query=zip, data=data['property'], pixelart=gen_house_buffers(len(data['property'])))
 
@@ -298,7 +298,7 @@ def homes_by_zip(zip):
     params = {
         'postalcode': zip,
         'page': '1',
-        'pagesize': '30',
+        'pagesize': '100',
     }
 
     response = requests.get(
