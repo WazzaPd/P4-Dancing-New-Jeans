@@ -113,6 +113,16 @@
       }
 
       let houses = document.querySelectorAll("[id^='house-']");
+      var houseInfo = "{{ data | safe }}";
+      houseInfo = houseInfo.replace(/'/g, '"');
+
+      console.log(houseInfo);
+
+      // let pixelart = "{{ pixelart | safe }}"
+      // pixelart = pixelart.replace(/'/g, '"');
+      // pixelart = JSON.parse(pixelart);
+
+      // console.log(pixelart);
 
       for (var i = 0; i < houses.length; i++) {
         $(`#house-${i}`).click(function () {
@@ -120,19 +130,15 @@
           $("#modal").modal("show");
           var houseId = this.id.split("-")[1];
           var house = houses[houseId];
-
-          // get house info from data passed from flask
-          var houseInfo = "{{ data | safe }}";
-          houseInfo = houseInfo.replace(/'/g, '"');
           houseInfo = JSON.parse(houseInfo)[houseId];
-
-          console.log(houseInfo);
 
           // populate modal with house info
           $("#modal-title").text(`$${formatNumberCommas(houseInfo.assessment.market.mktttlvalue)}`);
           $("#property-address").text(
             `${houseInfo.address.oneLine}`
           );
+
+          $("#property-image").attr("src", document.getElementById(`image-${houseId}`).src);
 
         });
       }
@@ -171,7 +177,7 @@
 
                 <div class="d-flex justify-content-center align-items-center"
                   style="height: 100%; width: 100%; background-color: #f5f5f5;">
-                  <img src="https://via.placeholder.com/300x300" alt="placeholder" class="img-fluid">
+                  <img src="" id="property-image" class="img-fluid">
                 </div>
               </div>
               <div class="col-lg-7">
@@ -179,7 +185,7 @@
                   <strong>price</strong>
 
                   <h5 class="h5-responsive">
-                    <span id="property-beds">
+                    <span id="property-address">
                       <strong>address</strong>
                     </span>
                   </h5>
@@ -323,7 +329,7 @@
           <div class="card m-3 col-sm-5" style="max-width: 540px;" id="house-{{loop.index0}}">
             <img src='data:image/png;base64, 
               {{ pixelart[loop.index0] }}
-              ' class="card-img-top" alt="...">
+              ' class="card-img-top" id="image-{{loop.index0}}" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{ house.address.oneLine }}</h5>
               <p class="card-text">{{house.summary.propclass}} for sale</p>
