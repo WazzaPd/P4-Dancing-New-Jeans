@@ -209,3 +209,4 @@ JosephW -- 2023-05-24 12:28
 DavidC -- 2023-05-24 13:01
 - Fixed random centering for entering buy page from the navbar instead of the search bar
 - Added conditional for url params or flask-passed vars
+- Fixed incompatibilities with ubuntu python and our backend code

@@ -106,7 +106,7 @@ def register():
             # c.execute("select email from accounts where email=?", var)\
 
             if check_email(input_email):
-                response['error'] = "email is already taken. Please select another email. \n"
+                response['error'] = "Email is already taken. Please select another email. \n"
                 response['success'] = "false"
                 response['error'] = response['error'].strip('\n')
                 return redirect(f"/?error={response['error']}&modal=register")
