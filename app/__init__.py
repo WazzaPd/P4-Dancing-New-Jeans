@@ -303,7 +303,33 @@ def homes_by_zip(zip):
     return response.json()
 
 
+@app.route("/api/property/address", methods=['GET'])
+def expanded_detail_home():
+    # fetch data and return json
+    headers = {
+        'Accept': 'application/json, application/json',
+        'apikey': attomKey,
+    }
+
+    attomId = request.args['id']
+    # required params
+    # if 'zip' not in request.args:
+    #     return {'error': 'missing required parameter: zip'}
+
+    params = {
+        'id': attomId,
+        # 'page': '1',
+        # 'pagesize': '100',
+    }
+
+    response = requests.get(
+        'https://api.gateway.attomdata.com/propertyapi/v1.0.0/property/expandedprofile', params=params, headers=headers)
+    # return response.json()
+    data = response.json()['property'][0]
+    return data
+
 # import os
+
 
 dirname = os.path.dirname(__file__)
 

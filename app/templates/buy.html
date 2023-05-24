@@ -11,7 +11,6 @@
     function GetMap() {
       map = new Microsoft.Maps.Map("#myMap", {});
 
-      // check url for query string longitude and latitude and if they exist, use them to center the map
       var urlParams = new URLSearchParams(window.location.search);
       var lat = urlParams.get("latitude");
       var lng = urlParams.get("longitude");
@@ -55,14 +54,17 @@
       //     }
       //   });
 
-      var houses = "{{ data | safe }}"
+      var houses = `{{ data | safe }}`
+      // deal with quotes in json
+
+
       houses = houses.replace(/'/g, '"');
       houses = JSON.parse(houses);
 
       console.log(houses);
 
       for (var i = 0; i < houses.length; i++) {
-        console.log(houses[i]);
+        // console.log(houses[i]);
         var pin = new Microsoft.Maps.Pushpin(
           new Microsoft.Maps.Location(houses[i].location.latitude, houses[i].location.longitude)
         );
@@ -97,10 +99,45 @@
         });
       }
     }
+
   </script>
   <script type="text/javascript"
     src="https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=ApoGTzsEZsZMP51WQe65HrnjXH7j1SjtRzbCW25F65Q25_5Xlb_tdZodeYlELesQ"
     async defer></script>
+
+  <script defer>
+    window.onload = function () {
+
+      function formatNumberCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+
+      let houses = document.querySelectorAll("[id^='house-']");
+
+      for (var i = 0; i < houses.length; i++) {
+        $(`#house-${i}`).click(function () {
+          // show modal on click and populate with house data
+          $("#modal").modal("show");
+          var houseId = this.id.split("-")[1];
+          var house = houses[houseId];
+
+          // get house info from data passed from flask
+          var houseInfo = "{{ data | safe }}";
+          houseInfo = houseInfo.replace(/'/g, '"');
+          houseInfo = JSON.parse(houseInfo)[houseId];
+
+          console.log(houseInfo);
+
+          // populate modal with house info
+          $("#modal-title").text(`$${formatNumberCommas(houseInfo.assessment.market.mktttlvalue)}`);
+          $("#property-address").text(
+            `${houseInfo.address.oneLine}`
+          );
+
+        });
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -121,6 +158,139 @@
         </div>
       </div>
     </div> -->
+
+    <!-- modal -->
+
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-lg-5">
+                <!-- center image vertically -->
+
+                <div class="d-flex justify-content-center align-items-center"
+                  style="height: 100%; width: 100%; background-color: #f5f5f5;">
+                  <img src="https://via.placeholder.com/300x300" alt="placeholder" class="img-fluid">
+                </div>
+              </div>
+              <div class="col-lg-7">
+                <h2 class="h2-responsive" id="modal-title">
+                  <strong>price</strong>
+
+                  <h5 class="h5-responsive">
+                    <span id="property-beds">
+                      <strong>address</strong>
+                    </span>
+                  </h5>
+                </h2>
+
+                <!--Accordion wrapper-->
+                <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+
+                  <!-- Accordion card -->
+                  <div class="card">
+
+                    <!-- Card header -->
+                    <div class="card-header" role="tab" id="headingOne1">
+                      <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
+                        aria-controls="collapseOne1">
+                        <h5 class="mb-0">
+                          Collapsible Group Item #1 <i class="fas fa-angle-down rotate-icon"></i>
+                        </h5>
+                      </a>
+                    </div>
+
+                    <!-- Card body -->
+                    <div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1"
+                      data-parent="#accordionEx">
+                      <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                        squid.
+                        3
+                        wolf moon officia aute,
+                        non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                      </div>
+                    </div>
+
+                  </div>
+                  <!-- Accordion card -->
+
+                  <!-- Accordion card -->
+                  <div class="card">
+
+                    <!-- Card header -->
+                    <div class="card-header" role="tab" id="headingTwo2">
+                      <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
+                        aria-expanded="false" aria-controls="collapseTwo2">
+                        <h5 class="mb-0">
+                          Collapsible Group Item #2 <i class="fas fa-angle-down rotate-icon"></i>
+                        </h5>
+                      </a>
+                    </div>
+
+                    <!-- Card body -->
+                    <div id="collapseTwo2" class="collapse" role="tabpanel" aria-labelledby="headingTwo2"
+                      data-parent="#accordionEx">
+                      <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                        squid.
+                        3
+                        wolf moon officia aute,
+                        non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                      </div>
+                    </div>
+
+                  </div>
+                  <!-- Accordion card -->
+
+                  <!-- Accordion card -->
+                  <div class="card">
+
+                    <!-- Card header -->
+                    <div class="card-header" role="tab" id="headingThree3">
+                      <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree3"
+                        aria-expanded="false" aria-controls="collapseThree3">
+                        <h5 class="mb-0">
+                          Collapsible Group Item #3 <i class="fas fa-angle-down rotate-icon"></i>
+                        </h5>
+                      </a>
+                    </div>
+
+                    <!-- Card body -->
+                    <div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree3"
+                      data-parent="#accordionEx">
+                      <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                        squid.
+                        3
+                        wolf moon officia aute,
+                        non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                      </div>
+                    </div>
+
+                  </div>
+                  <!-- Accordion card -->
+
+                </div>
+                <!-- Accordion wrapper -->
+
+                <!-- Add to Cart -->
+                <div class="card-body">
+                  <!-- <div class="text-center">
+                    <button class="btn btn-primary waves-effect waves-light">Buy
+                      <i class="fas fa-cart-plus ml-2" aria-hidden="true"></i>
+                    </button>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- end modal -->
     <div class="row" style="height: 100%;">
       <div class="col-7">
         <div id="myMap" style="position: relative; height: 92vh;"></div>
@@ -150,13 +320,14 @@
             </div>
           </div> -->
 
-          <div class="card m-3 col-sm-5" style="max-width: 540px;">
+          <div class="card m-3 col-sm-5" style="max-width: 540px;" id="house-{{loop.index0}}">
             <img src='data:image/png;base64, 
               {{ pixelart[loop.index0] }}
               ' class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{ house.address.oneLine }}</h5>
               <p class="card-text">{{house.summary.propclass}} for sale</p>
+              <span style="display: none;" id="id-{{loop.index0}}">{{ house.identifier.attomId }}</span>
               <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
             </div>
           </div>
